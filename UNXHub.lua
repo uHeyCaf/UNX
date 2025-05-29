@@ -1288,7 +1288,7 @@ local function fpscap()
 	if valueoffps then
 		setfpscap(valueoffps)
 	else
-		warn("Invalid FPS value: " .. tostring(FPSTextBox.Text))
+		warn("[ERROR]: Invalid FPS value: " .. tostring(FPSTextBox.Text))
 	end
 end
 
