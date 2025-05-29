@@ -130,6 +130,8 @@ UNXHubUI.Name = "UNXHubUI"
 UNXHubUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 UNXHubUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
+
 OpenUNX.Name = "OpenUNX"
 OpenUNX.Parent = UNXHubUI
 OpenUNX.BackgroundColor3 = Color3.fromRGB(39, 39, 39)
@@ -1858,8 +1860,6 @@ button.MouseButton1Click:Connect(toggleTracers)
 button1.MouseButton1Click:Connect(toggleSkeleton)
 ScaleUI.MouseButton1Click:Connect(ChangeScale)
 TurnOnBoxESP()
-
-loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
 
 startsfx:Play()
 
