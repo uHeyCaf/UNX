@@ -1284,8 +1284,12 @@ local function Rejoin()
 end
 
 local function fpscap()
-	local valueoffps = FPSTextBox.Text
-	setfpscap(valueoffps)
+	local valueoffps = tonumber(FPSTextBox.Text)
+	if valueoffps then
+		setfpscap(valueoffps)
+	else
+		warn("Invalid FPS value: " .. tostring(FPSTextBox.Text))
+	end
 end
 
 local function RunODH()
