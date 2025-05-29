@@ -1284,8 +1284,8 @@ local function Rejoin()
 end
 
 local function fpscap()
-	local value = FPSTextBox.Text
-	setfpscap(value)
+	local valueoffps = FPSTextBox.Text
+	setfpscap(valueoffps)
 end
 
 local function RunODH()
