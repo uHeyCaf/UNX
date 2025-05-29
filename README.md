@@ -1,30 +1,43 @@
-# UNXHub Information
-Current Version: 1.1.2
-Current Tested Executors: **Ronix, Codex, Delta, F^W *(FrostWare)***
+# UNXHub
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**Version:** **1.1.2**  
+**Tested Executors:** **Ronix**, **Codex**, **Delta**, **F^W (FrostWare)**
 
-# Information
-**UNXHub** Is Totally **Open Source**!, U Can: Mod, Take Code, Use As Reference, Anything U Want To Do With It!, And The Best Part: **U Dont Need To Credit Me!, *I Just Created This To Learn LUAU lol***
+---
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## **About**
 
-# Features 
+**UNXHub** is a fully **open-source** project that anyone can **use**, **modify**, or **learn from**.  
+You’re free to **mod it**, **take parts of the code**, or **use it as a reference** — **no credit required**.  
 
-1. WalkSpeed Changer
-2. JumpPower Changer
-3. Max Zoom Changer
-4. Gravity Changer
-5. Infinite Jump
-6. ESP All
-7. Outline All
-8. Tracers All
-9. Skeleton All
-10. ESP Box All
-11. FPS Cap Set
-12. Join Server Using JobID
-13. Copy Current Server JobID
-14. Rejoin Server
-15. UI Scale
+This project was created for **personal learning** and **experimentation** with **LUAU**.
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
+
+## **Features**
+
+- **WalkSpeed Changer**  
+- **JumpPower Changer**  
+- **Max Zoom Changer**  
+- **Gravity Changer**  
+- **Infinite Jump**  
+- **ESP (All)**  
+- **Outline (All)**  
+- **Tracers (All)**  
+- **Skeleton (All)**  
+- **ESP Box (All)**  
+- **FPS Cap Setter**  
+- **Join Server by JobID**  
+- **Copy Current Server JobID**  
+- **Rejoin Server**  
+- **UI Scale Adjustment**  
+
+---
+
+## **Usage**
+
+Simply grab the code and use it however you want.  
+There are **no restrictions**, and you **don’t need to credit me**.  
+This project exists mainly as a **learning tool**.
+
+---
