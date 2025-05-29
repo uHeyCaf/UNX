@@ -30,14 +30,6 @@ This project was created for **personal learning** and **experimentation** with 
 - **Join Server by JobID**  
 - **Copy Current Server JobID**  
 - **Rejoin Server**  
-- **UI Scale Adjustment**  
-
----
-
-## **Usage**
-
-Simply grab the code and use it however you want.  
-There are **no restrictions**, and you **don’t need to credit me**.  
-This project exists mainly as a **learning tool**.
+- **UI Scale Adjustment**
 
 ---
