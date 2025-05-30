@@ -1,4 +1,4 @@
--- btw solara also steals your malware
+-- M
 
 local player = game.Players.LocalPlayer
 local exec = (type(identifyexecutor) == "function" and identifyexecutor()) or "Not Possible To Fetch Executor Name, Your Executor Probably Dont Support identifyexecutor()"
@@ -556,7 +556,7 @@ TextLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TextLabel.BorderSizePixel = 0
 TextLabel.Size = UDim2.new(1, 0, 0.785714269, 0)
 TextLabel.Font = Enum.Font.SourceSansLight
-TextLabel.Text = "UNXHub (1.1.2)"
+TextLabel.Text = "UNXHub (1.1.2a)"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextSize = 18.000
 TextLabel.TextWrapped = true
@@ -949,11 +949,11 @@ EnableFly.MouseButton1Down:connect(function()
 	if isFlying == true then
 		isFlying = false
 		teleportWalking = false
-		
+
 		if debugmode == true then
 			print("[DEBUG]: Fly Toggle Turned Off.")
 		end
-		
+
 		unfreezeCharacter()
 
 		player.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
@@ -1248,7 +1248,7 @@ local InfJumpEnabled = false
 function InfJumpF()
 	local player = game.Players.LocalPlayer
 	local humanoid = player.Character:WaitForChild("Humanoid")
-	
+
 	game:GetService("UserInputService").JumpRequest:Connect(function()
 		if InfJumpEnabled then
 			humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
@@ -1261,14 +1261,18 @@ InfJumpF()
 InfJumpB.MouseButton1Click:Connect(function()
 	InfJumpEnabled = not InfJumpEnabled
 	if InfJumpEnabled then
+		InfJumpB.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 	else
+		InfJumpB.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
 	end
 end)
 
 local function FlyFC()
 	if FlyFrame.Visible == false then
+		ExecScript.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 		FlyFrame.Visible = true
 	else
+		ExecScript.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
 		FlyFrame.Visible = false
 	end
 end
@@ -1277,11 +1281,11 @@ local function Rejoin()
 	local tpservice = game:GetService("TeleportService")
 	local jobID = game.JobId
 	local placeID = game.PlaceId
-	
+
 	if debugmode == true then
 		print("[DEBUG]: Rejoining...")
 	end
-	
+
 	tpservice:TeleportToPlaceInstance(placeID, jobID, game.Players.LocalPlayer)
 end
 
@@ -1373,6 +1377,7 @@ function RemoveHighlight(Player)
 end
 
 function EnableHighlights()
+	EnableOut.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 	HighlightsEnabled = true
 	for _, player in pairs(Players:GetPlayers()) do
 		PlayerConnections[player.UserId] = {}
@@ -1381,6 +1386,7 @@ function EnableHighlights()
 end
 
 function DisableHighlights()
+	EnableOut.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
 	HighlightsEnabled = false
 	for _, player in pairs(Players:GetPlayers()) do
 		RemoveHighlight(player)
@@ -1495,8 +1501,10 @@ button.MouseButton1Click:Connect(function()
 	ESPEnabledFunction = not ESPEnabledFunction
 	if ESPEnabledFunction then
 		enableESP()
+		EnableESP.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 	else
 		disableESP()
+		EnableESP.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
 	end
 end)
 
@@ -1520,6 +1528,12 @@ local button = EnableTrcs
 
 function toggleTracers()
 	tracersOn = not tracersOn
+
+	if tracersOn then
+		button.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
+	else
+		button.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
+	end
 
 	if tracersOn then
 		RunService:BindToRenderStep("Tracers", Enum.RenderPriority.Camera.Value + 1, function()
@@ -1555,6 +1569,10 @@ function toggleTracers()
 	end
 end
 
+local tracersOn = false
+local tracerLines = {}
+local button = EnableTrcs
+
 local skelOn = false
 local skeletonLines = {}
 local button1 = EnableSkel
@@ -1570,8 +1588,46 @@ function drawLine(p1, p2, color)
 	return line
 end
 
+function toggleTracers()
+	tracersOn = not tracersOn
+	button.BackgroundColor3 = tracersOn and Color3.fromRGB(0, 121, 0) or Color3.fromRGB(49, 49, 49)
+
+	if tracersOn then
+		RunService:BindToRenderStep("Tracers", Enum.RenderPriority.Camera.Value + 1, function()
+			for _, line in ipairs(tracerLines) do
+				line:Destroy()
+			end
+			tracerLines = {}
+
+			for _, player in ipairs(Players:GetPlayers()) do
+				if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+					local root = player.Character.HumanoidRootPart
+					local screenPos, onScreen = Camera:WorldToViewportPoint(root.Position)
+					if onScreen then
+						local line = Drawing.new("Line")
+						line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
+						line.To = Vector2.new(screenPos.X, screenPos.Y)
+						line.Color = player.TeamColor.Color
+						line.Thickness = 2
+						line.Transparency = 1
+						line.Visible = true
+						table.insert(tracerLines, line)
+					end
+				end
+			end
+		end)
+	else
+		RunService:UnbindFromRenderStep("Tracers")
+		for _, line in ipairs(tracerLines) do
+			line:Destroy()
+		end
+		tracerLines = {}
+	end
+end
+
 function toggleSkeleton()
 	skelOn = not skelOn
+	button1.BackgroundColor3 = skelOn and Color3.fromRGB(0, 121, 0) or Color3.fromRGB(49, 49, 49)
 
 	if skelOn then
 		RunService:BindToRenderStep("SkeletonESP", Enum.RenderPriority.Camera.Value + 1, function()
@@ -1610,24 +1666,12 @@ function toggleSkeleton()
 					local ll = getScreen(parts.LeftLeg)
 					local rl = getScreen(parts.RightLeg)
 
-					if head and torso then
-						table.insert(skeletonLines, drawLine(head, torso, color))
-					end
-					if torso and hip then
-						table.insert(skeletonLines, drawLine(torso, hip, color))
-					end
-					if torso and la then
-						table.insert(skeletonLines, drawLine(torso, la, color))
-					end
-					if torso and ra then
-						table.insert(skeletonLines, drawLine(torso, ra, color))
-					end
-					if hip and ll then
-						table.insert(skeletonLines, drawLine(hip, ll, color))
-					end
-					if hip and rl then
-						table.insert(skeletonLines, drawLine(hip, rl, color))
-					end
+					if head and torso then table.insert(skeletonLines, drawLine(head, torso, color)) end
+					if torso and hip then table.insert(skeletonLines, drawLine(torso, hip, color)) end
+					if torso and la then table.insert(skeletonLines, drawLine(torso, la, color)) end
+					if torso and ra then table.insert(skeletonLines, drawLine(torso, ra, color)) end
+					if hip and ll then table.insert(skeletonLines, drawLine(hip, ll, color)) end
+					if hip and rl then table.insert(skeletonLines, drawLine(hip, rl, color)) end
 				end
 			end
 		end)
@@ -1649,6 +1693,7 @@ function TurnOnBoxESP()
 		boxESPEnabled = not boxESPEnabled
 
 		if boxESPEnabled then
+			EnableBox.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 			local function addBox(char, player)
 				local hrp = char:FindFirstChild("HumanoidRootPart")
 				if hrp and not hrp:FindFirstChild("ESPBox") then
@@ -1684,6 +1729,7 @@ function TurnOnBoxESP()
 			end)
 
 		else
+			EnableBox.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
 			for _, player in pairs(game.Players:GetPlayers()) do
 				if player ~= game.Players.LocalPlayer then
 					local hrp = player.Character and player.Character:FindFirstChild("HumanoidRootPart")
