@@ -1,4 +1,4 @@
--- M
+-- :v
 
 local player = game.Players.LocalPlayer
 local exec = (type(identifyexecutor) == "function" and identifyexecutor()) or "Not Possible To Fetch Executor Name, Your Executor Probably Dont Support identifyexecutor()"
@@ -121,23 +121,21 @@ local UIScale = Instance.new("UIScale")
 local UIScale_2 = Instance.new("UIScale")
 local UIScale_3 = Instance.new("UIScale")
 local btnsfx = Instance.new("Sound")
-local startsfx = Instance.new("Sound")
 local UICorner_39 = Instance.new("UICorner")
 local UICorner_40 = Instance.new("UICorner")
-
+local UNXSFXFolder = Instance.new("Folder")
 print("[SUCESS]: Variables Set, Step (1/3) Complete.")
 
-btnsfx.SoundId = "rbxassetid://9113749897"
-btnsfx.Parent = game.SoundService
+UNXSFXFolder.Parent = workspace
 
-startsfx.SoundId = "rbxassetid://140419294351439"
-startsfx.Parent = game.SoundService
+btnsfx.SoundId = "rbxassetid://9113749897"
+btnsfx.Parent = UNXSFXFolder
 
 UNXHubUI.Name = "UNXHubUI"
 UNXHubUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 UNXHubUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
 
 UNXHubUI.Name = "UNXHubUI"
 UNXHubUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
@@ -563,7 +561,7 @@ Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title.BorderSizePixel = 0
 Title.Size = UDim2.new(1, 0, 0.785714269, 0)
 Title.Font = Enum.Font.SourceSansLight
-Title.Text = "UNXHub (1.1.3)"
+Title.Text = "UNXHub (1.1.3a)"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 18.000
 Title.TextWrapped = true
@@ -814,6 +812,123 @@ Tab4.BackgroundTransparency = 1
 
 ButtonSafeArea.BackgroundTransparency = 1
 
+if debugmode == true then
+	print("[DEBUG]: Debug Mode Is On Beta And Wont Show Much Debug Info, This May Change On The Future.")
+end
+
+print("[SUCESS]: UX Created Sucessfully, Step (2/3) Done.")
+
+local TweenService = game:GetService("TweenService")
+
+local ActiveNotifications = {}
+
+local function CreateTween(Object, Goal, Duration)
+	local Tween = TweenService:Create(Object, TweenInfo.new(Duration, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+		Position = Goal
+	})
+	Tween:Play()
+end
+
+local function PlayNotificationSound()
+	local sound = Instance.new("Sound")
+	sound.SoundId = "rbxassetid://8551372796"
+	sound.Volume = 1
+	sound.Parent = UNXSFXFolder
+	sound:Play()
+	sound.Ended:Connect(function()
+		sound:Destroy()
+	end)
+end
+
+local function ShowNotification(Title, Message, Duration)
+	local NotificationBox = Instance.new("Frame")
+	local BoxCorner = Instance.new("UICorner")
+	local TitleText = Instance.new("TextLabel")
+	local MessageText = Instance.new("TextLabel")
+	local IconImage = Instance.new("ImageLabel")
+	local IconCorner = Instance.new("UICorner")
+	local UIScale_4 = Instance.new("UIScale")
+	
+	NotificationBox.Name = "NotificationBox"
+	NotificationBox.BackgroundColor3 = Color3.fromRGB(0, 7, 32)
+	NotificationBox.BorderSizePixel = 0
+	NotificationBox.Size = UDim2.new(0.3, 0, 0.1, 0)
+	NotificationBox.AnchorPoint = Vector2.new(1, 1)
+	NotificationBox.Position = UDim2.new(1.3, 0, 0.99, 0)
+	NotificationBox.Parent = UNXHubUI
+	BoxCorner.Parent = NotificationBox
+	
+	UIScale_4.Parent = NotificationBox
+	UIScale_4.Scale = 1
+	
+	TitleText.Name = "TitleText"
+	TitleText.Parent = NotificationBox
+	TitleText.BackgroundTransparency = 1
+	TitleText.Position = UDim2.new(0.2, 0, 0.15, 0)
+	TitleText.Size = UDim2.new(0.75, 0, 0.3, 0)
+	TitleText.Font = Enum.Font.SourceSansLight
+	TitleText.Text = Title
+	TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
+	TitleText.TextScaled = true
+	TitleText.TextWrapped = true
+	TitleText.TextXAlignment = Enum.TextXAlignment.Left
+
+	MessageText.Name = "MessageText"
+	MessageText.Parent = NotificationBox
+	MessageText.BackgroundTransparency = 1
+	MessageText.Position = UDim2.new(0.2, 0, 0.55, 0)
+	MessageText.Size = UDim2.new(0.75, 0, 0.3, 0)
+	MessageText.Font = Enum.Font.SourceSansLight
+	MessageText.Text = Message
+	MessageText.TextColor3 = Color3.fromRGB(255, 255, 255)
+	MessageText.TextScaled = true
+	MessageText.TextWrapped = true
+	MessageText.TextXAlignment = Enum.TextXAlignment.Left
+
+	IconImage.Name = "IconImage"
+	IconImage.Parent = NotificationBox
+	IconImage.BackgroundTransparency = 1
+	IconImage.Position = UDim2.new(0.03, 0, 0.1, 0)
+	IconImage.Size = UDim2.new(0.15, 0, 0.8, 0)
+	IconImage.Image = "rbxassetid://84759093733650"
+	IconCorner.Parent = IconImage
+	
+	if debugmode == true then
+		print("[DEBUG]: Called Notification, Title = ".. Title ..", Message = ".. Message ..", Duration = ".. Duration .."!")	
+	end
+	
+	table.insert(ActiveNotifications, NotificationBox)
+
+	for Index, Notification in ipairs(ActiveNotifications) do
+		local FinalPosition = UDim2.new(0.99, 0, 0.99 - (0.11 * (Index - 1)), 0)
+		CreateTween(Notification, FinalPosition, 0.35)
+	end
+
+	CreateTween(NotificationBox, UDim2.new(0.99, 0, 0.99 - (0.11 * (#ActiveNotifications - 1)), 0), 0.35)
+
+	PlayNotificationSound()
+
+	task.delay(Duration, function()
+		if NotificationBox and NotificationBox.Parent then
+			CreateTween(NotificationBox, UDim2.new(1.3, 0, NotificationBox.Position.Y.Scale, 0), 0.35)
+			task.wait(0.35)
+			NotificationBox:Destroy()
+		end
+
+		for i, Notification in ipairs(ActiveNotifications) do
+			if Notification == NotificationBox then
+				table.remove(ActiveNotifications, i)
+				break
+			end
+		end
+
+		for i, Notification in ipairs(ActiveNotifications) do
+			local Position = UDim2.new(0.99, 0, 0.99 - (0.11 * (i - 1)), 0)
+			CreateTween(Notification, Position, 0.35)
+		end
+	end)
+end
+
 local TweenService = game:GetService("TweenService")
 
 local frames = {MainFrame, TabsFrame}
@@ -834,8 +949,6 @@ end
 local function fadeIn()
 	fade(0)
 end
-
-print("[SUCESS]: UX Created Sucessfully, Step (2/3) Done.")
 
 local function SwitchTab1()
 	btnsfx:Play()
@@ -1191,10 +1304,12 @@ local function ChangeScale()
 	local value = ScaleTxT.Text
 
 	if value >= "2.000000000000000000001" then
+		ShowNotification("Failed To Set Scale", "Please, Set Scale In This Range: 2-0.5", 5)
 		ScaleTxT.Text = "Please, Set Scale In This Range: 2-0.5"
 		wait(1)
 		ScaleTxT.Text = ""
 	elseif value <= "0.49999999999999999" then
+		ShowNotification("Failed To Set Scale", "Please, Set Scale In This Range: 2-0.5", 5)
 		ScaleTxT.Text = "Please, Set Scale In This Range: 2-0.5"
 		wait(1)
 		ScaleTxT.Text = ""
@@ -1225,6 +1340,7 @@ local function CopyJobID1()
 		toclipboard(jobID)
 		print("[SUCESS]: JobID: ".. jobID	.." Copied To Clipboard.")
 	else
+		ShowNotification("Wild Error Found!", "Your Executor: ".. exec .." Does Not Support: toclipboard() or setclipboard().", 5)
 		warn("[ERROR]: Your Executor: ".. exec .." Does Not Support: toclipboard() or setclipboard(). ")
 	end
 end
@@ -1383,7 +1499,7 @@ local function Rejoin()
 	if debugmode == true then
 		print("[DEBUG]: Rejoining...")
 	end
-
+	ShowNotification("Please Wait...", "Rejoining Server, Please Wait...", 5)
 	tpservice:TeleportToPlaceInstance(placeID, jobID, game.Players.LocalPlayer)
 end
 
@@ -1392,6 +1508,7 @@ local function fpscap()
 	if valueoffps then
 		setfpscap(valueoffps)
 	else
+		ShowNotification("Wild Error Found!", "Invalid FPS Value: ".. tostring(FPSTextBox.Text) .."!", 5)
 		warn("[ERROR]: Invalid FPS value: " .. tostring(FPSTextBox.Text))
 	end
 end
@@ -2005,12 +2122,11 @@ button1.MouseButton1Click:Connect(toggleSkeleton)
 ScaleUI.MouseButton1Click:Connect(ChangeScale)
 TurnOnBoxESP()
 
-startsfx:Play()
-
 print("[SUCESS]: All Functions & Buttons Done, Step (3/3) Done.")
 
 
 local phrases = {
+	"[SUCESS]: UNXHub Loaded Without Any Errors!, Maybe",
 	"Let Him Cook",
 	"Let Me Cook",
 	"UNXHub Is Now Done Loading",
@@ -2026,7 +2142,14 @@ local phrases = {
 	"The Current Time Is: ".. os.time() .."!",
 	"Hello :)",
 	"Hi :), Thanks For Using UNXHub!",
-	"From 1-10 i Choose: ".. math.random(1,10) .."!"
+	"From 1-10 i Choose: ".. math.random(1,10) .."!",
+	"Also Try InfiniteYield (If You Havent)",
+	"NEW FEATURES!1!!1!",
+	"ERM, ACTUALLY 🤓☝️",
+	"Should i Create a Discord Server?"
 }
 
 print("[NEUTRAL]: ".. phrases[math.random(#phrases)])
+
+
+ShowNotification("Welcome, ".. LocalPlayer.Name .."!", "Welcome To UNXHub ".. LocalPlayer.Name .."!", 5)
