@@ -1,3 +1,4 @@
+
 -- :v
 
 local player = game.Players.LocalPlayer
@@ -22,15 +23,22 @@ print("Local Executor Level:")
 printidentity()
 print("-------------- UXNHub Loaded Info --------------")
 
--- DebugMode Still On Beta And Wont Do Much Shit...
-local debugmode = false
+-- DebugMode Usage: Find Errors In Script.
 
+debugmode = false
+
+if debugmode == true then
+	print("[DEBUG]: Creating Variables For The UI, Please Wait")
+end
+
+local jobID = game.JobId
+local placeID = game.PlaceId
+local TweenService = game:GetService("TweenService")
 local UserInputService = game:GetService("UserInputService")
 local Players = game:GetService("Players")
 local RunService = game:GetService("RunService")
-local Workspace = game:GetService("Workspace")
 local LocalPlayer = Players.LocalPlayer
-local Camera = Workspace.CurrentCamera
+local Camera = workspace.CurrentCamera
 local UNXHubUI = Instance.new("ScreenGui")
 local OpenUNX = Instance.new("TextButton")
 local UICorner = Instance.new("UICorner")
@@ -38,108 +46,132 @@ local TabsFrame = Instance.new("Frame")
 local ButtonSafeArea = Instance.new("Frame")
 local OtherTab3 = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
-local ConfigTab4 = Instance.new("TextButton")
+local FastButtonTab4 = Instance.new("TextButton")
 local UICorner_3 = Instance.new("UICorner")
 local ESPTab2 = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
 local LocalPlayerTab1 = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
+local UICorner_6 = Instance.new("UICorner")
+local ConfigTab5 = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
 local Bar = Instance.new("Frame")
 local Minimize = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
-local UICorner_7 = Instance.new("UICorner")
-local MainFrame = Instance.new("Frame")
-local Tab4 = Instance.new("Frame")
-local ScaleUI = Instance.new("TextButton")
-local ScaleTxT = Instance.new("TextBox")
 local UICorner_8 = Instance.new("UICorner")
 local UICorner_9 = Instance.new("UICorner")
+local UICorner_10 = Instance.new("UICorner")
+local MainFrame = Instance.new("Frame")
+local Tab4 = Instance.new("Frame")
+local RejFF = Instance.new("TextButton")
+local UICorner_11 = Instance.new("UICorner")
+local AimLockFF = Instance.new("TextButton")
+local UICorner_12 = Instance.new("UICorner")
+local InfjumpFF = Instance.new("TextButton")
+local UICorner_13 = Instance.new("UICorner")
+local NoclipFF = Instance.new("TextButton")
+local UICorner_14 = Instance.new("UICorner")
 local Tab2 = Instance.new("Frame")
 local EnableBox = Instance.new("TextButton")
-local UICorner_10 = Instance.new("UICorner")
+local UICorner_15 = Instance.new("UICorner")
 local EnableTrcs = Instance.new("TextButton")
-local UICorner_11 = Instance.new("UICorner")
+local UICorner_16 = Instance.new("UICorner")
 local EnableESP = Instance.new("TextButton")
-local UICorner_12 = Instance.new("UICorner")
+local UICorner_17 = Instance.new("UICorner")
 local EnableSkel = Instance.new("TextButton")
-local UICorner_13 = Instance.new("UICorner")
+local UICorner_18 = Instance.new("UICorner")
 local EnableOut = Instance.new("TextButton")
-local UICorner_14 = Instance.new("UICorner")
+local UICorner_19 = Instance.new("UICorner")
 local Tab1 = Instance.new("Frame")
 local ApplyZoom = Instance.new("TextButton")
-local UICorner_15 = Instance.new("UICorner")
+local UICorner_20 = Instance.new("UICorner")
 local ZoomTextBox = Instance.new("TextBox")
-local UICorner_16 = Instance.new("UICorner")
+local UICorner_21 = Instance.new("UICorner")
 local ApplyJP = Instance.new("TextButton")
 local JPTextBox = Instance.new("TextBox")
-local UICorner_17 = Instance.new("UICorner")
-local UICorner_18 = Instance.new("UICorner")
+local UICorner_22 = Instance.new("UICorner")
+local UICorner_23 = Instance.new("UICorner")
 local ApplyWS = Instance.new("TextButton")
 local WSTextBox = Instance.new("TextBox")
-local UICorner_19 = Instance.new("UICorner")
-local UICorner_20 = Instance.new("UICorner")
-local ApplyGrav = Instance.new("TextButton")
-local UICorner_21 = Instance.new("UICorner")
-local ZoomTextBox_2 = Instance.new("TextBox")
-local UICorner_22 = Instance.new("UICorner")
-local InfJumpB = Instance.new("TextButton")
-local UICorner_23 = Instance.new("UICorner")
 local UICorner_24 = Instance.new("UICorner")
+local UICorner_25 = Instance.new("UICorner")
+local ApplyGrav = Instance.new("TextButton")
+local UICorner_26 = Instance.new("UICorner")
+local ZoomTextBox_2 = Instance.new("TextBox")
+local UICorner_27 = Instance.new("UICorner")
+local InfJumpB = Instance.new("TextButton")
+local UICorner_28 = Instance.new("UICorner")
+local UICorner_29 = Instance.new("UICorner")
 local Bar2 = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
 local logo = Instance.new("ImageLabel")
-local UICorner_25 = Instance.new("UICorner")
+local UICorner_30 = Instance.new("UICorner")
 local Tab3 = Instance.new("Frame")
 local ApplyFPS = Instance.new("TextButton")
-local UICorner_26 = Instance.new("UICorner")
+local UICorner_31 = Instance.new("UICorner")
 local FPSTextBox = Instance.new("TextBox")
-local UICorner_27 = Instance.new("UICorner")
+local UICorner_32 = Instance.new("UICorner")
 local CopyJobID = Instance.new("TextButton")
-local UICorner_28 = Instance.new("UICorner")
+local UICorner_33 = Instance.new("UICorner")
 local ExecScript = Instance.new("TextButton")
-local UICorner_29 = Instance.new("UICorner")
+local UICorner_34 = Instance.new("UICorner")
 local JoinJobID = Instance.new("TextButton")
 local JobIDTextBox = Instance.new("TextBox")
-local UICorner_30 = Instance.new("UICorner")
-local UICorner_31 = Instance.new("UICorner")
-local LoadIy = Instance.new("TextButton")
-local UICorner_32 = Instance.new("UICorner")
-local OverdriveH = Instance.new("TextButton")
-local UICorner_33 = Instance.new("UICorner")
-local RejServer = Instance.new("TextButton")
-local UICorner_34 = Instance.new("UICorner")
-local AimLock = Instance.new("TextButton")
 local UICorner_35 = Instance.new("UICorner")
-local FlyFrame = Instance.new("Frame")
 local UICorner_36 = Instance.new("UICorner")
+local LoadIy = Instance.new("TextButton")
+local UICorner_37 = Instance.new("UICorner")
+local OverdriveH = Instance.new("TextButton")
+local UICorner_38 = Instance.new("UICorner")
+local RejServer = Instance.new("TextButton")
+local UICorner_39 = Instance.new("UICorner")
+local AimLock = Instance.new("TextButton")
+local UICorner_40 = Instance.new("UICorner")
+local Tab5 = Instance.new("Frame")
+local ScaleUI = Instance.new("TextButton")
+local ScaleTxT = Instance.new("TextBox")
+local UICorner_41 = Instance.new("UICorner")
+local UICorner_42 = Instance.new("UICorner")
+local FlyFrame = Instance.new("Frame")
+local UICorner_43 = Instance.new("UICorner")
 local Title_2 = Instance.new("TextLabel")
 local FlyButton = Instance.new("TextButton")
-local UICorner_37 = Instance.new("UICorner")
+local UICorner_44 = Instance.new("UICorner")
 local FlySpeedTXT = Instance.new("TextBox")
-local UICorner_38 = Instance.new("UICorner")
+local UICorner_45 = Instance.new("UICorner")
+local FastButton = Instance.new("Frame")
+local NoclipFastButton = Instance.new("TextButton")
+local UICorner_46 = Instance.new("UICorner")
+local InfJumpFastButton = Instance.new("TextButton")
+local UICorner_47 = Instance.new("UICorner")
+local AimLockFastButton = Instance.new("TextButton")
+local UICorner_48 = Instance.new("UICorner")
+local RejoinFastButton = Instance.new("TextButton")
+local UICorner_49 = Instance.new("UICorner")
 local UIScale = Instance.new("UIScale")
 local UIScale_2 = Instance.new("UIScale")
 local UIScale_3 = Instance.new("UIScale")
 local btnsfx = Instance.new("Sound")
-local UICorner_39 = Instance.new("UICorner")
-local UICorner_40 = Instance.new("UICorner")
-local UNXSFXFolder = Instance.new("Folder")
+local UICorner_39F = Instance.new("UICorner")
+local UICorner_40F = Instance.new("UICorner")
+
+if debugmode == true then
+	print("[DEBUG]: All Variables Created, Setting Up UI...")
+end
+
 print("[SUCESS]: Variables Set, Step (1/3) Complete.")
 
-UNXSFXFolder.Parent = workspace
-
-btnsfx.SoundId = "rbxassetid://9113749897"
-btnsfx.Parent = UNXSFXFolder
+btnsfx.SoundId = "rbxassetid://107511012621133"
+btnsfx.Parent = workspace
 
 UNXHubUI.Name = "UNXHubUI"
 UNXHubUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 UNXHubUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
+if debugmode == true then
+	print("[DEBUG]: Calling Ban API, Please Wait...")
+end
 
-UNXHubUI.Name = "UNXHubUI"
-UNXHubUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-UNXHubUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+-- loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
 
 OpenUNX.Name = "OpenUNX"
 OpenUNX.Parent = UNXHubUI
@@ -149,6 +181,7 @@ OpenUNX.BorderSizePixel = 0
 OpenUNX.Position = UDim2.new(0.00691881916, 0, 0.0139082056, 0)
 OpenUNX.Size = UDim2.new(0.0761070102, 0, 0.152990267, 0)
 OpenUNX.Visible = false
+OpenUNX.ZIndex = 999999999
 OpenUNX.Font = Enum.Font.SourceSansLight
 OpenUNX.Text = "Open UNXHub!"
 OpenUNX.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -165,13 +198,14 @@ TabsFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TabsFrame.BorderSizePixel = 0
 TabsFrame.Position = UDim2.new(0.191420659, 0, 0.206884563, 0)
 TabsFrame.Size = UDim2.new(0.114544891, 0, 0.578929067, 0)
+TabsFrame.ZIndex = 999999999
 
 ButtonSafeArea.Name = "ButtonSafeArea"
 ButtonSafeArea.Parent = TabsFrame
 ButtonSafeArea.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
 ButtonSafeArea.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ButtonSafeArea.BorderSizePixel = 0
-ButtonSafeArea.Position = UDim2.new(0, 0, 0.0990990996, 0)
+ButtonSafeArea.Position = UDim2.new(0, 0, 0.0960960984, 0)
 ButtonSafeArea.Size = UDim2.new(1, 0, 0.9009009, 0)
 
 OtherTab3.Name = "OtherTab3"
@@ -189,20 +223,20 @@ OtherTab3.TextWrapped = true
 
 UICorner_2.Parent = OtherTab3
 
-ConfigTab4.Name = "ConfigTab4"
-ConfigTab4.Parent = ButtonSafeArea
-ConfigTab4.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
-ConfigTab4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ConfigTab4.BorderSizePixel = 0
-ConfigTab4.Position = UDim2.new(0.0469798669, 0, 0.383333325, 0)
-ConfigTab4.Size = UDim2.new(0.906040251, 0, 0.100000001, 0)
-ConfigTab4.Font = Enum.Font.SourceSansLight
-ConfigTab4.Text = "UNX Config"
-ConfigTab4.TextColor3 = Color3.fromRGB(255, 255, 255)
-ConfigTab4.TextSize = 18.000
-ConfigTab4.TextWrapped = true
+FastButtonTab4.Name = "FastButtonTab4"
+FastButtonTab4.Parent = ButtonSafeArea
+FastButtonTab4.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+FastButtonTab4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FastButtonTab4.BorderSizePixel = 0
+FastButtonTab4.Position = UDim2.new(0.0469798818, 0, 0.383333325, 0)
+FastButtonTab4.Size = UDim2.new(0.906040251, 0, 0.100000001, 0)
+FastButtonTab4.Font = Enum.Font.SourceSansLight
+FastButtonTab4.Text = "Fast Buttons"
+FastButtonTab4.TextColor3 = Color3.fromRGB(255, 255, 255)
+FastButtonTab4.TextSize = 18.000
+FastButtonTab4.TextWrapped = true
 
-UICorner_3.Parent = ConfigTab4
+UICorner_3.Parent = FastButtonTab4
 
 ESPTab2.Name = "ESPTab2"
 ESPTab2.Parent = ButtonSafeArea
@@ -234,6 +268,23 @@ LocalPlayerTab1.TextWrapped = true
 
 UICorner_5.Parent = LocalPlayerTab1
 
+UICorner_6.Parent = ButtonSafeArea
+
+ConfigTab5.Name = "ConfigTab5"
+ConfigTab5.Parent = ButtonSafeArea
+ConfigTab5.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+ConfigTab5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ConfigTab5.BorderSizePixel = 0
+ConfigTab5.Position = UDim2.new(0.0469797812, 0, 0.513333321, 0)
+ConfigTab5.Size = UDim2.new(0.906040251, 0, 0.100000001, 0)
+ConfigTab5.Font = Enum.Font.SourceSansLight
+ConfigTab5.Text = "UNX Config"
+ConfigTab5.TextColor3 = Color3.fromRGB(255, 255, 255)
+ConfigTab5.TextSize = 18.000
+ConfigTab5.TextWrapped = true
+
+UICorner_7.Parent = ConfigTab5
+
 Bar.Name = "Bar"
 Bar.Parent = TabsFrame
 Bar.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
@@ -254,10 +305,12 @@ Minimize.TextColor3 = Color3.fromRGB(255, 255, 0)
 Minimize.TextSize = 14.000
 Minimize.TextWrapped = true
 
-UICorner_6.CornerRadius = UDim.new(0, 999)
-UICorner_6.Parent = Minimize
+UICorner_8.CornerRadius = UDim.new(0, 999)
+UICorner_8.Parent = Minimize
 
-UICorner_7.Parent = TabsFrame
+UICorner_9.Parent = Bar
+
+UICorner_10.Parent = TabsFrame
 
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = UNXHubUI
@@ -266,51 +319,81 @@ MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 MainFrame.BorderSizePixel = 0
 MainFrame.Position = UDim2.new(0.315190643, 0, 0.206884563, 0)
 MainFrame.Size = UDim2.new(0.492004901, 0, 0.578929067, 0)
+MainFrame.ZIndex = 999999999
 
 Tab4.Name = "Tab4"
 Tab4.Parent = MainFrame
 Tab4.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+Tab4.BackgroundTransparency = 1.000
 Tab4.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Tab4.BorderSizePixel = 0
 Tab4.Position = UDim2.new(0, 0, 0.0690690726, 0)
 Tab4.Size = UDim2.new(1, 0, 0.92492491, 0)
-Tab4.Visible = false
 
-ScaleUI.Name = "ScaleUI"
-ScaleUI.Parent = Tab4
-ScaleUI.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
-ScaleUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScaleUI.BorderSizePixel = 0
-ScaleUI.Position = UDim2.new(0.0343750007, 0, 0.0649350658, 0)
-ScaleUI.Size = UDim2.new(0.928125024, 0, 0.103896104, 0)
-ScaleUI.Font = Enum.Font.SourceSansLight
-ScaleUI.Text = "UI Scale"
-ScaleUI.TextColor3 = Color3.fromRGB(255, 255, 255)
-ScaleUI.TextSize = 18.000
-ScaleUI.TextWrapped = true
+RejFF.Name = "RejFF"
+RejFF.Parent = Tab4
+RejFF.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+RejFF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RejFF.BorderSizePixel = 0
+RejFF.Position = UDim2.new(0.0343750007, 0, 0.350649357, 0)
+RejFF.Size = UDim2.new(0.928125024, 0, 0.103896104, 0)
+RejFF.Font = Enum.Font.SourceSansLight
+RejFF.Text = "Rejoin Fast Button"
+RejFF.TextColor3 = Color3.fromRGB(255, 255, 255)
+RejFF.TextSize = 18.000
+RejFF.TextWrapped = true
 
-ScaleTxT.Name = "ScaleTxT"
-ScaleTxT.Parent = ScaleUI
-ScaleTxT.BackgroundColor3 = Color3.fromRGB(22, 0, 109)
-ScaleTxT.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ScaleTxT.BorderSizePixel = 0
-ScaleTxT.Position = UDim2.new(0.860269368, 0, 0.125, 0)
-ScaleTxT.Size = UDim2.new(0.12626262, 0, 0.6875, 0)
-ScaleTxT.Font = Enum.Font.SourceSansLight
-ScaleTxT.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
-ScaleTxT.PlaceholderText = "UI Scale"
-ScaleTxT.Text = ""
-ScaleTxT.TextColor3 = Color3.fromRGB(255, 255, 255)
-ScaleTxT.TextSize = 14.000
-ScaleTxT.TextWrapped = true
+UICorner_11.Parent = RejFF
 
-UICorner_8.Parent = ScaleTxT
+AimLockFF.Name = "AimLockFF"
+AimLockFF.Parent = Tab4
+AimLockFF.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+AimLockFF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AimLockFF.BorderSizePixel = 0
+AimLockFF.Position = UDim2.new(0.0343750007, 0, 0.0649350658, 0)
+AimLockFF.Size = UDim2.new(0.928125024, 0, 0.103896104, 0)
+AimLockFF.Font = Enum.Font.SourceSansLight
+AimLockFF.Text = "Aimlock Fast Button"
+AimLockFF.TextColor3 = Color3.fromRGB(255, 255, 255)
+AimLockFF.TextSize = 18.000
+AimLockFF.TextWrapped = true
 
-UICorner_9.Parent = ScaleUI
+UICorner_12.Parent = AimLockFF
+
+InfjumpFF.Name = "InfjumpFF"
+InfjumpFF.Parent = Tab4
+InfjumpFF.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+InfjumpFF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InfjumpFF.BorderSizePixel = 0
+InfjumpFF.Position = UDim2.new(0.0343750007, 0, 0.204545453, 0)
+InfjumpFF.Size = UDim2.new(0.928125024, 0, 0.103896104, 0)
+InfjumpFF.Font = Enum.Font.SourceSansLight
+InfjumpFF.Text = "Inf Jump Fast Button"
+InfjumpFF.TextColor3 = Color3.fromRGB(255, 255, 255)
+InfjumpFF.TextSize = 18.000
+InfjumpFF.TextWrapped = true
+
+UICorner_13.Parent = InfjumpFF
+
+NoclipFF.Name = "NoclipFF"
+NoclipFF.Parent = Tab4
+NoclipFF.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+NoclipFF.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NoclipFF.BorderSizePixel = 0
+NoclipFF.Position = UDim2.new(0.0343750007, 0, 0.487012982, 0)
+NoclipFF.Size = UDim2.new(0.928125024, 0, 0.103896104, 0)
+NoclipFF.Font = Enum.Font.SourceSansLight
+NoclipFF.Text = "Noclip Fast Button"
+NoclipFF.TextColor3 = Color3.fromRGB(255, 255, 255)
+NoclipFF.TextSize = 18.000
+NoclipFF.TextWrapped = true
+
+UICorner_14.Parent = NoclipFF
 
 Tab2.Name = "Tab2"
 Tab2.Parent = MainFrame
 Tab2.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+Tab2.BackgroundTransparency = 1.000
 Tab2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Tab2.BorderSizePixel = 0
 Tab2.Position = UDim2.new(0, 0, 0.0690690726, 0)
@@ -330,7 +413,7 @@ EnableBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 EnableBox.TextSize = 18.000
 EnableBox.TextWrapped = true
 
-UICorner_10.Parent = EnableBox
+UICorner_15.Parent = EnableBox
 
 EnableTrcs.Name = "EnableTrcs"
 EnableTrcs.Parent = Tab2
@@ -345,7 +428,7 @@ EnableTrcs.TextColor3 = Color3.fromRGB(255, 255, 255)
 EnableTrcs.TextSize = 18.000
 EnableTrcs.TextWrapped = true
 
-UICorner_11.Parent = EnableTrcs
+UICorner_16.Parent = EnableTrcs
 
 EnableESP.Name = "EnableESP"
 EnableESP.Parent = Tab2
@@ -360,7 +443,7 @@ EnableESP.TextColor3 = Color3.fromRGB(255, 255, 255)
 EnableESP.TextSize = 18.000
 EnableESP.TextWrapped = true
 
-UICorner_12.Parent = EnableESP
+UICorner_17.Parent = EnableESP
 
 EnableSkel.Name = "EnableSkel"
 EnableSkel.Parent = Tab2
@@ -375,7 +458,7 @@ EnableSkel.TextColor3 = Color3.fromRGB(255, 255, 255)
 EnableSkel.TextSize = 18.000
 EnableSkel.TextWrapped = true
 
-UICorner_13.Parent = EnableSkel
+UICorner_18.Parent = EnableSkel
 
 EnableOut.Name = "EnableOut"
 EnableOut.Parent = Tab2
@@ -390,16 +473,21 @@ EnableOut.TextColor3 = Color3.fromRGB(255, 255, 255)
 EnableOut.TextSize = 18.000
 EnableOut.TextWrapped = true
 
-UICorner_14.Parent = EnableOut
+UICorner_19.Parent = EnableOut
 
 Tab1.Name = "Tab1"
 Tab1.Parent = MainFrame
 Tab1.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+Tab1.BackgroundTransparency = 1.000
 Tab1.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Tab1.BorderSizePixel = 0
 Tab1.Position = UDim2.new(0, 0, 0.0690690726, 0)
 Tab1.Size = UDim2.new(1, 0, 0.92492491, 0)
 Tab1.Visible = false
+
+if debugmode == true then
+	print("[DEBUG]: All Tabs Crated Sucessfully.")
+end
 
 ApplyZoom.Name = "ApplyZoom"
 ApplyZoom.Parent = Tab1
@@ -414,7 +502,7 @@ ApplyZoom.TextColor3 = Color3.fromRGB(255, 255, 255)
 ApplyZoom.TextSize = 18.000
 ApplyZoom.TextWrapped = true
 
-UICorner_15.Parent = ApplyZoom
+UICorner_20.Parent = ApplyZoom
 
 ZoomTextBox.Name = "ZoomTextBox"
 ZoomTextBox.Parent = ApplyZoom
@@ -431,7 +519,7 @@ ZoomTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 ZoomTextBox.TextSize = 14.000
 ZoomTextBox.TextWrapped = true
 
-UICorner_16.Parent = ZoomTextBox
+UICorner_21.Parent = ZoomTextBox
 
 ApplyJP.Name = "ApplyJP"
 ApplyJP.Parent = Tab1
@@ -461,9 +549,9 @@ JPTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 JPTextBox.TextSize = 14.000
 JPTextBox.TextWrapped = true
 
-UICorner_17.Parent = JPTextBox
+UICorner_22.Parent = JPTextBox
 
-UICorner_18.Parent = ApplyJP
+UICorner_23.Parent = ApplyJP
 
 ApplyWS.Name = "ApplyWS"
 ApplyWS.Parent = Tab1
@@ -493,9 +581,9 @@ WSTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 WSTextBox.TextSize = 14.000
 WSTextBox.TextWrapped = true
 
-UICorner_19.Parent = WSTextBox
+UICorner_24.Parent = WSTextBox
 
-UICorner_20.Parent = ApplyWS
+UICorner_25.Parent = ApplyWS
 
 ApplyGrav.Name = "ApplyGrav"
 ApplyGrav.Parent = Tab1
@@ -510,7 +598,7 @@ ApplyGrav.TextColor3 = Color3.fromRGB(255, 255, 255)
 ApplyGrav.TextSize = 18.000
 ApplyGrav.TextWrapped = true
 
-UICorner_21.Parent = ApplyGrav
+UICorner_26.Parent = ApplyGrav
 
 ZoomTextBox_2.Name = "ZoomTextBox"
 ZoomTextBox_2.Parent = ApplyGrav
@@ -527,7 +615,7 @@ ZoomTextBox_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 ZoomTextBox_2.TextSize = 14.000
 ZoomTextBox_2.TextWrapped = true
 
-UICorner_22.Parent = ZoomTextBox_2
+UICorner_27.Parent = ZoomTextBox_2
 
 InfJumpB.Name = "InfJumpB"
 InfJumpB.Parent = Tab1
@@ -542,13 +630,18 @@ InfJumpB.TextColor3 = Color3.fromRGB(255, 255, 255)
 InfJumpB.TextSize = 18.000
 InfJumpB.TextWrapped = true
 
-UICorner_23.Parent = InfJumpB
+UICorner_28.Parent = InfJumpB
 
-UICorner_24.Parent = MainFrame
+UICorner_29.Parent = MainFrame
+
+if debugmode == true then
+	print("[DEBUG]: Tab 1 Completed Sucessfuly!")
+end
 
 Bar2.Name = "Bar2"
 Bar2.Parent = MainFrame
 Bar2.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+Bar2.BackgroundTransparency = 1.000
 Bar2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Bar2.BorderSizePixel = 0
 Bar2.Size = UDim2.new(1, 0, 0.0840840861, 0)
@@ -573,19 +666,21 @@ logo.BackgroundTransparency = 1.000
 logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 logo.BorderSizePixel = 0
 logo.Position = UDim2.new(0.00625000009, 0, 0.142857149, 0)
-logo.Size = UDim2.new(0.0296874996, 0, 0.678571403, 0)
+logo.Size = UDim2.new(0.0296874978, 0, 0.678571403, 0)
 logo.Image = "rbxassetid://84759093733650"
 logo.ScaleType = Enum.ScaleType.Crop
 
-UICorner_25.Parent = logo
+UICorner_30.Parent = logo
 
 Tab3.Name = "Tab3"
 Tab3.Parent = MainFrame
 Tab3.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+Tab3.BackgroundTransparency = 1.000
 Tab3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Tab3.BorderSizePixel = 0
 Tab3.Position = UDim2.new(0, 0, 0.0690690726, 0)
 Tab3.Size = UDim2.new(1, 0, 0.92492491, 0)
+Tab3.Visible = false
 
 ApplyFPS.Name = "ApplyFPS"
 ApplyFPS.Parent = Tab3
@@ -600,7 +695,7 @@ ApplyFPS.TextColor3 = Color3.fromRGB(255, 255, 255)
 ApplyFPS.TextSize = 18.000
 ApplyFPS.TextWrapped = true
 
-UICorner_26.Parent = ApplyFPS
+UICorner_31.Parent = ApplyFPS
 
 FPSTextBox.Name = "FPSTextBox"
 FPSTextBox.Parent = ApplyFPS
@@ -617,7 +712,7 @@ FPSTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 FPSTextBox.TextSize = 14.000
 FPSTextBox.TextWrapped = true
 
-UICorner_27.Parent = FPSTextBox
+UICorner_32.Parent = FPSTextBox
 
 CopyJobID.Name = "CopyJobID"
 CopyJobID.Parent = Tab3
@@ -632,7 +727,7 @@ CopyJobID.TextColor3 = Color3.fromRGB(255, 255, 255)
 CopyJobID.TextSize = 18.000
 CopyJobID.TextWrapped = true
 
-UICorner_28.Parent = CopyJobID
+UICorner_33.Parent = CopyJobID
 
 ExecScript.Name = "ExecScript"
 ExecScript.Parent = Tab3
@@ -647,7 +742,7 @@ ExecScript.TextColor3 = Color3.fromRGB(255, 255, 255)
 ExecScript.TextSize = 18.000
 ExecScript.TextWrapped = true
 
-UICorner_29.Parent = ExecScript
+UICorner_34.Parent = ExecScript
 
 JoinJobID.Name = "JoinJobID"
 JoinJobID.Parent = Tab3
@@ -677,9 +772,9 @@ JobIDTextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
 JobIDTextBox.TextSize = 14.000
 JobIDTextBox.TextWrapped = true
 
-UICorner_30.Parent = JobIDTextBox
+UICorner_35.Parent = JobIDTextBox
 
-UICorner_31.Parent = JoinJobID
+UICorner_36.Parent = JoinJobID
 
 LoadIy.Name = "LoadIy"
 LoadIy.Parent = Tab3
@@ -694,7 +789,7 @@ LoadIy.TextColor3 = Color3.fromRGB(255, 255, 255)
 LoadIy.TextSize = 18.000
 LoadIy.TextWrapped = true
 
-UICorner_32.Parent = LoadIy
+UICorner_37.Parent = LoadIy
 
 OverdriveH.Name = "OverdriveH"
 OverdriveH.Parent = Tab3
@@ -702,14 +797,14 @@ OverdriveH.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
 OverdriveH.BorderColor3 = Color3.fromRGB(0, 0, 0)
 OverdriveH.BorderSizePixel = 0
 OverdriveH.Position = UDim2.new(0.0343750007, 0, 0.305194795, 0)
-OverdriveH.Size = UDim2.new(0.442187488, 0, 0.0909090936, 0)
+OverdriveH.Size = UDim2.new(0.442187458, 0, 0.0909090936, 0)
 OverdriveH.Font = Enum.Font.SourceSansLight
 OverdriveH.Text = "Overdrive H (MM2, Blade Ball, Dead Rails, Fisch)"
 OverdriveH.TextColor3 = Color3.fromRGB(255, 255, 255)
 OverdriveH.TextSize = 18.000
 OverdriveH.TextWrapped = true
 
-UICorner_33.Parent = OverdriveH
+UICorner_38.Parent = OverdriveH
 
 RejServer.Name = "RejServer"
 RejServer.Parent = Tab3
@@ -724,7 +819,7 @@ RejServer.TextColor3 = Color3.fromRGB(255, 255, 255)
 RejServer.TextSize = 18.000
 RejServer.TextWrapped = true
 
-UICorner_34.Parent = RejServer
+UICorner_39.Parent = RejServer
 
 AimLock.Name = "AimLock"
 AimLock.Parent = Tab3
@@ -739,7 +834,58 @@ AimLock.TextColor3 = Color3.fromRGB(255, 255, 255)
 AimLock.TextSize = 18.000
 AimLock.TextWrapped = true
 
-UICorner_35.Parent = AimLock
+
+if debugmode == true then
+	print("[DEBUG]: Tab 3 Completed Sucessfuly!")
+end
+
+UICorner_40.Parent = AimLock
+
+Tab5.Name = "Tab5"
+Tab5.Parent = MainFrame
+Tab5.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+Tab5.BackgroundTransparency = 1.000
+Tab5.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Tab5.BorderSizePixel = 0
+Tab5.Position = UDim2.new(0, 0, 0.0690690726, 0)
+Tab5.Size = UDim2.new(1, 0, 0.92492491, 0)
+Tab5.Visible = false
+
+ScaleUI.Name = "ScaleUI"
+ScaleUI.Parent = Tab5
+ScaleUI.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+ScaleUI.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScaleUI.BorderSizePixel = 0
+ScaleUI.Position = UDim2.new(0.0343750007, 0, 0.0649350658, 0)
+ScaleUI.Size = UDim2.new(0.928125024, 0, 0.103896104, 0)
+ScaleUI.Font = Enum.Font.SourceSansLight
+ScaleUI.Text = "UI Scale"
+ScaleUI.TextColor3 = Color3.fromRGB(255, 255, 255)
+ScaleUI.TextSize = 18.000
+ScaleUI.TextWrapped = true
+
+ScaleTxT.Name = "ScaleTxT"
+ScaleTxT.Parent = ScaleUI
+ScaleTxT.BackgroundColor3 = Color3.fromRGB(22, 0, 109)
+ScaleTxT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ScaleTxT.BorderSizePixel = 0
+ScaleTxT.Position = UDim2.new(0.860269368, 0, 0.125, 0)
+ScaleTxT.Size = UDim2.new(0.12626262, 0, 0.6875, 0)
+ScaleTxT.Font = Enum.Font.SourceSansLight
+ScaleTxT.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+ScaleTxT.PlaceholderText = "UI Scale"
+ScaleTxT.Text = ""
+ScaleTxT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ScaleTxT.TextSize = 14.000
+ScaleTxT.TextWrapped = true
+
+if debugmode == true then
+	print("[DEBUG]: Tab 5 Completed Sucessfuly!")
+end
+
+UICorner_41.Parent = ScaleTxT
+
+UICorner_42.Parent = ScaleUI
 
 FlyFrame.Name = "FlyFrame"
 FlyFrame.Parent = UNXHubUI
@@ -749,8 +895,9 @@ FlyFrame.BorderSizePixel = 0
 FlyFrame.Position = UDim2.new(0.00999384932, 0, 0.0191237833, 0)
 FlyFrame.Size = UDim2.new(0.180658042, 0, 0.175591096, 0)
 FlyFrame.Visible = false
+FlyFrame.ZIndex = 999999999
 
-UICorner_36.Parent = FlyFrame
+UICorner_43.Parent = FlyFrame
 
 Title_2.Name = "Title"
 Title_2.Parent = FlyFrame
@@ -772,7 +919,7 @@ FlyButton.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
 FlyButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
 FlyButton.BorderSizePixel = 0
 FlyButton.Position = UDim2.new(0.0595744736, 0, 0.326732665, 0)
-FlyButton.Size = UDim2.new(0.421276629, 0, 0.485148519, 0)
+FlyButton.Size = UDim2.new(0.421276659, 0, 0.485148519, 0)
 FlyButton.Font = Enum.Font.SourceSansLight
 FlyButton.Text = "Fly"
 FlyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -780,7 +927,7 @@ FlyButton.TextScaled = true
 FlyButton.TextSize = 24.000
 FlyButton.TextWrapped = true
 
-UICorner_37.Parent = FlyButton
+UICorner_44.Parent = FlyButton
 
 FlySpeedTXT.Name = "FlySpeedTXT"
 FlySpeedTXT.Parent = FlyFrame
@@ -798,27 +945,120 @@ FlySpeedTXT.TextScaled = true
 FlySpeedTXT.TextSize = 24.000
 FlySpeedTXT.TextWrapped = true
 
-UICorner_38.Parent = FlySpeedTXT
-FlyFrame.Visible = false
+
+if debugmode == true then
+	print("[DEBUG]: Fly UI Completed Sucessfuly!")
+end
+
+UICorner_45.Parent = FlySpeedTXT
+
+FastButton.Name = "FastButton"
+FastButton.Parent = UNXHubUI
+FastButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+FastButton.BackgroundTransparency = 1.000
+FastButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+FastButton.BorderSizePixel = 0
+FastButton.Size = UDim2.new(1, 0, 1, 0)
+FastButton.ZIndex = 999999998
+
+NoclipFastButton.Name = "NoclipFastButton"
+NoclipFastButton.Parent = FastButton
+NoclipFastButton.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+NoclipFastButton.BackgroundTransparency = 0.500
+NoclipFastButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NoclipFastButton.BorderSizePixel = 0
+NoclipFastButton.ClipsDescendants = true
+NoclipFastButton.Position = UDim2.new(0.0984615386, 0, 0.0139082056, 0)
+NoclipFastButton.Size = UDim2.new(0.0307692308, 0, 0.0556328222, 0)
+NoclipFastButton.Visible = false
+NoclipFastButton.Font = Enum.Font.SourceSansLight
+NoclipFastButton.Text = "Noclip"
+NoclipFastButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+NoclipFastButton.TextScaled = true
+NoclipFastButton.TextSize = 14.000
+NoclipFastButton.TextWrapped = true
+
+UICorner_46.Parent = NoclipFastButton
+
+InfJumpFastButton.Name = "InfJumpFastButton"
+InfJumpFastButton.Parent = FastButton
+InfJumpFastButton.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+InfJumpFastButton.BackgroundTransparency = 0.500
+InfJumpFastButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+InfJumpFastButton.BorderSizePixel = 0
+InfJumpFastButton.ClipsDescendants = true
+InfJumpFastButton.Position = UDim2.new(0.140910193, 0, 0.0139082056, 0)
+InfJumpFastButton.Size = UDim2.new(0.0307692308, 0, 0.0556328222, 0)
+InfJumpFastButton.Visible = false
+InfJumpFastButton.Font = Enum.Font.SourceSansLight
+InfJumpFastButton.Text = "InfJump"
+InfJumpFastButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+InfJumpFastButton.TextScaled = true
+InfJumpFastButton.TextSize = 14.000
+InfJumpFastButton.TextWrapped = true
+
+UICorner_47.Parent = InfJumpFastButton
+
+if debugmode == true then
+	warn("[DEBUG]: Call Line 1000")
+end
+AimLockFastButton.Name = "AimLockFastButton"
+AimLockFastButton.Parent = FastButton
+AimLockFastButton.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+AimLockFastButton.BackgroundTransparency = 0.500
+AimLockFastButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AimLockFastButton.BorderSizePixel = 0
+AimLockFastButton.ClipsDescendants = true
+AimLockFastButton.Position = UDim2.new(0.099313356, 0, 0.0886648074, 0)
+AimLockFastButton.Size = UDim2.new(0.0307692308, 0, 0.0556328222, 0)
+AimLockFastButton.Visible = false
+AimLockFastButton.Font = Enum.Font.SourceSansLight
+AimLockFastButton.Text = "Aimlock"
+AimLockFastButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+AimLockFastButton.TextScaled = true
+AimLockFastButton.TextSize = 14.000
+AimLockFastButton.TextWrapped = true
+
+UICorner_48.Parent = AimLockFastButton
+
+RejoinFastButton.Name = "RejoinFastButton"
+RejoinFastButton.Parent = FastButton
+RejoinFastButton.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+RejoinFastButton.BackgroundTransparency = 0.500
+RejoinFastButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+RejoinFastButton.BorderSizePixel = 0
+RejoinFastButton.ClipsDescendants = true
+RejoinFastButton.Position = UDim2.new(0.140851811, 0, 0.0886648074, 0)
+RejoinFastButton.Size = UDim2.new(0.0307692308, 0, 0.0556328222, 0)
+RejoinFastButton.Visible = false
+RejoinFastButton.Font = Enum.Font.SourceSansLight
+RejoinFastButton.Text = "Rejoin"
+RejoinFastButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+RejoinFastButton.TextScaled = true
+RejoinFastButton.TextSize = 14.000
+RejoinFastButton.TextWrapped = true
+
+
+if debugmode == true then
+	print("[DEBUG]: Tab 4 Completed Sucessfuly!")
+end
+
+UICorner_49.Parent = RejoinFastButton
+
+-- Fixes 
+
 UIScale.Parent = MainFrame
 UIScale_2.Parent = TabsFrame
 UIScale_3.Parent = FlyFrame
-Bar2.BackgroundTransparency = 1
-Bar.BackgroundTransparency = 1
-Tab1.BackgroundTransparency = 1
-Tab2.BackgroundTransparency = 1
-Tab3.BackgroundTransparency = 1
-Tab4.BackgroundTransparency = 1
 
 ButtonSafeArea.BackgroundTransparency = 1
 
+
 if debugmode == true then
-	print("[DEBUG]: Debug Mode Is On Beta And Wont Show Much Debug Info, This May Change On The Future.")
+	print("[DEBUG]: All UI Setup Completed Sucessfuly!")
 end
 
 print("[SUCESS]: UX Created Sucessfully, Step (2/3) Done.")
-
-local TweenService = game:GetService("TweenService")
 
 local ActiveNotifications = {}
 
@@ -829,17 +1069,6 @@ local function CreateTween(Object, Goal, Duration)
 	Tween:Play()
 end
 
-local function PlayNotificationSound()
-	local sound = Instance.new("Sound")
-	sound.SoundId = "rbxassetid://8551372796"
-	sound.Volume = 1
-	sound.Parent = UNXSFXFolder
-	sound:Play()
-	sound.Ended:Connect(function()
-		sound:Destroy()
-	end)
-end
-
 local function ShowNotification(Title, Message, Duration)
 	local NotificationBox = Instance.new("Frame")
 	local BoxCorner = Instance.new("UICorner")
@@ -847,8 +1076,8 @@ local function ShowNotification(Title, Message, Duration)
 	local MessageText = Instance.new("TextLabel")
 	local IconImage = Instance.new("ImageLabel")
 	local IconCorner = Instance.new("UICorner")
-	local UIScale_4 = Instance.new("UIScale")
-	
+	local UIScale_41 = Instance.new("UIScale")
+
 	NotificationBox.Name = "NotificationBox"
 	NotificationBox.BackgroundColor3 = Color3.fromRGB(0, 7, 32)
 	NotificationBox.BorderSizePixel = 0
@@ -857,10 +1086,10 @@ local function ShowNotification(Title, Message, Duration)
 	NotificationBox.Position = UDim2.new(1.3, 0, 0.99, 0)
 	NotificationBox.Parent = UNXHubUI
 	BoxCorner.Parent = NotificationBox
-	
-	UIScale_4.Parent = NotificationBox
-	UIScale_4.Scale = 1
-	
+
+	UIScale_41.Parent = NotificationBox
+	UIScale_41.Scale = 1
+
 	TitleText.Name = "TitleText"
 	TitleText.Parent = NotificationBox
 	TitleText.BackgroundTransparency = 1
@@ -892,11 +1121,11 @@ local function ShowNotification(Title, Message, Duration)
 	IconImage.Size = UDim2.new(0.15, 0, 0.8, 0)
 	IconImage.Image = "rbxassetid://84759093733650"
 	IconCorner.Parent = IconImage
-	
+
 	if debugmode == true then
 		print("[DEBUG]: Called Notification, Title = ".. Title ..", Message = ".. Message ..", Duration = ".. Duration .."!")	
 	end
-	
+
 	table.insert(ActiveNotifications, NotificationBox)
 
 	for Index, Notification in ipairs(ActiveNotifications) do
@@ -906,7 +1135,14 @@ local function ShowNotification(Title, Message, Duration)
 
 	CreateTween(NotificationBox, UDim2.new(0.99, 0, 0.99 - (0.11 * (#ActiveNotifications - 1)), 0), 0.35)
 
-	PlayNotificationSound()
+	local sound = Instance.new("Sound")
+	sound.SoundId = "rbxassetid://8551372796"
+	sound.Volume = 1
+	sound.Parent = workspace
+	sound:Play()
+	sound.Ended:Connect(function()
+		sound:Destroy()
+	end)
 
 	task.delay(Duration, function()
 		if NotificationBox and NotificationBox.Parent then
@@ -929,8 +1165,12 @@ local function ShowNotification(Title, Message, Duration)
 	end)
 end
 
-local TweenService = game:GetService("TweenService")
 
+if debugmode == true then
+	print("[DEBUG]: Notification System Completed Sucessfuly!")
+end
+
+local TweenService = game:GetService("TweenService")
 local frames = {MainFrame, TabsFrame}
 local tweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 
@@ -942,44 +1182,106 @@ local function fade(targetTransparency)
 	end
 end
 
-local function fadeOut()
-	fade(1)
-end
-
-local function fadeIn()
-	fade(0)
-end
-
-local function SwitchTab1()
+function SwitchTab1()
 	btnsfx:Play()
 	Tab1.Visible = true
 	Tab2.Visible = false
 	Tab3.Visible = false
 	Tab4.Visible = false
+	Tab5.Visible = false
 end
 
-local function SwitchTab2()
+
+if debugmode == true then
+	print("[DEBUG]: Tab 1 Linked To SwitchTab Sucessfuly!")
+end
+
+function SwitchTab2()
 	btnsfx:Play()
 	Tab1.Visible = false
 	Tab2.Visible = true
 	Tab3.Visible = false
 	Tab4.Visible = false
+	Tab5.Visible = false
 end
 
-local function SwitchTab3()
+
+if debugmode == true then
+	print("[DEBUG]: Tab 2 Linked To SwitchTab Sucessfuly!")
+end
+
+function SwitchTab3()
 	btnsfx:Play()
 	Tab1.Visible = false
 	Tab2.Visible = false
 	Tab3.Visible = true
 	Tab4.Visible = false
+	Tab5.Visible = false
 end
 
-local function SwitchTab4()
+
+if debugmode == true then
+	print("[DEBUG]: Tab 3 Linked To SwitchTab Sucessfuly!")
+end
+
+function SwitchTab4()
 	btnsfx:Play()
 	Tab1.Visible = false
 	Tab2.Visible = false
 	Tab3.Visible = false
 	Tab4.Visible = true
+	Tab5.Visible = false
+end
+
+
+if debugmode == true then
+	print("[DEBUG]: Tab 4 Linked To SwitchTab Sucessfuly!")
+end
+
+function SwitchTab5()
+	btnsfx:Play()
+	Tab1.Visible = false
+	Tab2.Visible = false
+	Tab3.Visible = false
+	Tab4.Visible = false
+	Tab5.Visible = true
+end
+
+
+if debugmode == true then
+	print("[DEBUG]: Tab 5 Linked To SwitchTab Sucessfuly!")
+end
+
+function FF1()
+	if NoclipFastButton.Visible == true then
+		NoclipFastButton.Visible = false
+	else
+		NoclipFastButton.Visible = true
+	end
+end
+
+function FF2()
+	if RejoinFastButton.Visible == true then
+		RejoinFastButton.Visible = false
+	else
+		RejoinFastButton.Visible = true
+	end
+end
+
+function FF3()
+	if AimLockFastButton.Visible == true then
+		AimLockFastButton.Visible = false
+	else
+		AimLockFastButton.Visible = true
+	end
+end
+
+function FF4()
+	if InfJumpFastButton.Visible == true then
+		InfJumpFastButton.Visible = false
+	else
+		InfJumpFastButton.Visible = true
+	end
 end
 
 local function MinimizeUI()
@@ -987,14 +1289,47 @@ local function MinimizeUI()
 	if debugmode == true then
 		print("[DEBUG]: UI Hidden.")
 	end
-	fadeOut()
+	fade(1)
 	MainFrame.Visible = false
 	TabsFrame.Visible = false
 	OpenUNX.Visible = true
 end
 
-local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
+local noclip = false
+local con
+
+function ToggleNoclip()
+	noclip = not noclip
+
+	if noclip then
+		if debugmode == true then
+			print("[DEBUG]: Noclip Is Now Activated")
+		end
+		con = game:GetService("RunService").Stepped:Connect(function()
+			local char = game:GetService("Players").LocalPlayer.Character
+			if char then
+				for _, p in pairs(char:GetDescendants()) do
+					if p:IsA("BasePart") then
+						p.CanCollide = false
+					end
+				end
+			end
+		end)
+	else
+		print("[DEBUG]: Noclip Is Now Off.")
+		if con then con:Disconnect() con = nil end
+
+		local char = game:GetService("Players").LocalPlayer.Character
+		if char then
+			for _, p in pairs(char:GetDescendants()) do
+				if p:IsA("BasePart") then
+					p.CanCollide = true
+				end
+			end
+		end
+	end
+end
+
 local player = Players.LocalPlayer
 
 local EnableFly = FlyButton
@@ -1276,7 +1611,7 @@ local function OpenUNX1()
 		print("[DEBUG]: UI Visible")
 	end
 	btnsfx:Play()	
-	fadeIn()
+	fade(0)
 	OpenUNX.Visible = false
 	TabsFrame.Visible = true
 	MainFrame.Visible = true
@@ -1324,14 +1659,11 @@ end
 
 local function JoinJobID1()
 	local tpservice = game:GetService("TeleportService")
-	local jobID = JobIDTextBox.Text
-	local placeID = game.PlaceId
 
 	tpservice:TeleportToPlaceInstance(placeID, jobID, game.Players.LocalPlayer)
 end
 
 local function CopyJobID1()
-	local jobID = game.JobId
 
 	if setclipboard then
 		setclipboard(jobID)
@@ -1396,13 +1728,10 @@ local function GravityFC()
 	end
 end
 
--- Variables
 local InfJumpEnabled = false
 
--- Infinite Jump Function
 function InfJumpF()
-	local player = game.Players.LocalPlayer
-	local humanoid = player.Character:WaitForChild("Humanoid")
+	local humanoid = LocalPlayer.Character:WaitForChild("Humanoid")
 
 	game:GetService("UserInputService").JumpRequest:Connect(function()
 		if InfJumpEnabled then
@@ -1414,6 +1743,15 @@ end
 InfJumpF()
 
 InfJumpB.MouseButton1Click:Connect(function()
+	InfJumpEnabled = not InfJumpEnabled
+	if InfJumpEnabled then
+		InfJumpB.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
+	else
+		InfJumpB.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+	end
+end)
+
+InfJumpFastButton.MouseButton1Click:Connect(function()
 	InfJumpEnabled = not InfJumpEnabled
 	if InfJumpEnabled then
 		InfJumpB.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
@@ -1475,13 +1813,17 @@ AimLock.MouseButton1Click:Connect(function()
 	ToggleAim()
 end)
 
+AimLockFastButton.MouseButton1Click:Connect(function()
+	ToggleAim()
+end)
+
 RunService.RenderStepped:Connect(function()
 	if Aiming then
 		AimToTarget()
 	end
 end)
 
-local function FlyFC()
+function FlyFC()
 	if FlyFrame.Visible == false then
 		ExecScript.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 		FlyFrame.Visible = true
@@ -1513,15 +1855,14 @@ local function fpscap()
 	end
 end
 
-local function RunODH()
+function RunODH()
 	loadstring(game:HttpGet("https://api.overdrivehub.xyz/v1/auth"))()
 end
 
-local function RunIY()
+function RunIY()
 	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
 end
 
---// Credits To Depso (Modded By Me :))
 local Players = game:GetService("Players")
 
 local HighlightsEnabled = false
@@ -1591,28 +1932,21 @@ function RemoveHighlight(Player)
 	end
 end
 
-function EnableHighlights()
-	EnableOut.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
-	HighlightsEnabled = true
-	for _, player in pairs(Players:GetPlayers()) do
-		PlayerConnections[player.UserId] = {}
-		SetupPlayerHighlight(player)
-	end
-end
-
-function DisableHighlights()
-	EnableOut.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
-	HighlightsEnabled = false
-	for _, player in pairs(Players:GetPlayers()) do
-		RemoveHighlight(player)
-	end
-end
 
 function ToggleHighlights()
 	if HighlightsEnabled then
-		DisableHighlights()
+		EnableOut.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+		HighlightsEnabled = false
+		for _, player in pairs(Players:GetPlayers()) do
+			RemoveHighlight(player)
+		end
 	else
-		EnableHighlights()
+		EnableOut.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
+		HighlightsEnabled = true
+		for _, player in pairs(Players:GetPlayers()) do
+			PlayerConnections[player.UserId] = {}
+			SetupPlayerHighlight(player)
+		end
 	end
 end
 
@@ -1667,7 +2001,9 @@ local function removeESP(player)
 		ESPObjects[player] = nil
 	end
 end
-
+if debugmode == true then
+	warn("[DEBUG]: Call Line 2000.")
+end
 local function updateESP()
 	for player, esp in pairs(ESPObjects) do
 		if player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
@@ -1700,25 +2036,19 @@ local function updateESP()
 	end
 end
 
-local function enableESP()
-	for _, player in ipairs(Players:GetPlayers()) do
-		createESP(player)
-	end
-end
-
-local function disableESP()
-	for player, _ in pairs(ESPObjects) do
-		removeESP(player)
-	end
-end
-
 button.MouseButton1Click:Connect(function()
 	ESPEnabledFunction = not ESPEnabledFunction
 	if ESPEnabledFunction then
-		enableESP()
+		for _, player in ipairs(Players:GetPlayers()) do
+			createESP(player)
+		end
+
 		EnableESP.BackgroundColor3 = Color3.fromRGB(0, 121, 0)
 	else
-		disableESP()
+		for player, _ in pairs(ESPObjects) do
+			removeESP(player)
+		end
+
 		EnableESP.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
 	end
 end)
@@ -1784,13 +2114,8 @@ function toggleTracers()
 	end
 end
 
-local tracersOn = false
-local tracerLines = {}
-local button = EnableTrcs
-
 local skelOn = false
 local skeletonLines = {}
-local button1 = EnableSkel
 
 function drawLine(p1, p2, color)
 	local line = Drawing.new("Line")
@@ -1803,46 +2128,9 @@ function drawLine(p1, p2, color)
 	return line
 end
 
-function toggleTracers()
-	tracersOn = not tracersOn
-	button.BackgroundColor3 = tracersOn and Color3.fromRGB(0, 121, 0) or Color3.fromRGB(0, 4, 67)
-
-	if tracersOn then
-		RunService:BindToRenderStep("Tracers", Enum.RenderPriority.Camera.Value + 1, function()
-			for _, line in ipairs(tracerLines) do
-				line:Destroy()
-			end
-			tracerLines = {}
-
-			for _, player in ipairs(Players:GetPlayers()) do
-				if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-					local root = player.Character.HumanoidRootPart
-					local screenPos, onScreen = Camera:WorldToViewportPoint(root.Position)
-					if onScreen then
-						local line = Drawing.new("Line")
-						line.From = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y)
-						line.To = Vector2.new(screenPos.X, screenPos.Y)
-						line.Color = player.TeamColor.Color
-						line.Thickness = 2
-						line.Transparency = 1
-						line.Visible = true
-						table.insert(tracerLines, line)
-					end
-				end
-			end
-		end)
-	else
-		RunService:UnbindFromRenderStep("Tracers")
-		for _, line in ipairs(tracerLines) do
-			line:Destroy()
-		end
-		tracerLines = {}
-	end
-end
-
 function toggleSkeleton()
 	skelOn = not skelOn
-	button1.BackgroundColor3 = skelOn and Color3.fromRGB(0, 121, 0) or Color3.fromRGB(0, 4, 67)
+	EnableSkel.BackgroundColor3 = skelOn and Color3.fromRGB(0, 121, 0) or Color3.fromRGB(0, 4, 67)
 
 	if skelOn then
 		RunService:BindToRenderStep("SkeletonESP", Enum.RenderPriority.Camera.Value + 1, function()
@@ -1969,6 +2257,11 @@ function TurnOnBoxESP()
 	end)
 end
 
+
+if debugmode == true then
+	print("[DEBUG]: All Functions Created Sucessfully.")
+end
+
 -- local function soi()
 --	while true do
 --		-- soi soi soi soi 
@@ -1977,127 +2270,26 @@ end
 --	end
 -- end
 
-local UserInputService = game:GetService("UserInputService")
+-- gotta use deprecated function or the fucking entire script would break!!!11!!1 :(
 
-local gui = MainFrame
+MainFrame.Active = true
+MainFrame.Draggable = true
+MainFrame.Selectable = true
 
-local dragging
-local dragInput
-local dragStart
-local startPos
+TabsFrame.Active = true
+TabsFrame.Draggable = true
+TabsFrame.Selectable = true
 
-local function update(input)
-	local delta = input.Position - dragStart
-	gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-end
-
-gui.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragging = true
-		dragStart = input.Position
-		startPos = gui.Position
-
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
-				dragging = false
-			end
-		end)
-	end
-end)
-
-gui.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		dragInput = input
-	end
-end)
-
-UserInputService.InputChanged:Connect(function(input)
-	if input == dragInput and dragging then
-		update(input)
-	end
-end)
-
-local UserInputService1 = game:GetService("UserInputService")
-
-local gui1 = TabsFrame
-
-local dragging1
-local dragInput1
-local dragStart1
-local startPos1
-
-local function update1(input1)
-	local delta1 = input1.Position - dragStart1
-	gui1.Position = UDim2.new(startPos1.X.Scale, startPos1.X.Offset + delta1.X, startPos1.Y.Scale, startPos1.Y.Offset + delta1.Y)
-end
-
-gui1.InputBegan:Connect(function(input1)
-	if input1.UserInputType == Enum.UserInputType.MouseButton1 or input1.UserInputType == Enum.UserInputType.Touch then
-		dragging1 = true
-		dragStart1 = input1.Position
-		startPos1 = gui1.Position
-
-		input1.Changed:Connect(function()
-			if input1.UserInputState == Enum.UserInputState.End then
-				dragging1 = false
-			end
-		end)
-	end
-end)
-
-gui1.InputChanged:Connect(function(input1)
-	if input1.UserInputType == Enum.UserInputType.MouseMovement or input1.UserInputType == Enum.UserInputType.Touch then
-		dragInput1 = input1
-	end
-end)
-
-UserInputService1.InputChanged:Connect(function(input1)
-	if input1 == dragInput1 and dragging1 then
-		update1(input1)
-	end
-end)
-
-local UserInputService2 = game:GetService("UserInputService")
-
-local gui2 = FlyFrame
-
-local dragging2
-local dragInput2
-local dragStart2
-local startPos2
-
-local function update2(input2)
-	local delta2 = input2.Position - dragStart2
-	gui2.Position = UDim2.new(startPos2.X.Scale, startPos2.X.Offset + delta2.X, startPos2.Y.Scale, startPos2.Y.Offset + delta2.Y)
-end
-
-gui2.InputBegan:Connect(function(input2)
-	if input2.UserInputType == Enum.UserInputType.MouseButton1 or input2.UserInputType == Enum.UserInputType.Touch then
-		dragging2 = true
-		dragStart2 = input2.Position
-		startPos2 = gui2.Position
-
-		input2.Changed:Connect(function()
-			if input2.UserInputState == Enum.UserInputState.End then
-				dragging2 = false
-			end
-		end)
-	end
-end)
-
-gui2.InputChanged:Connect(function(input2)
-	if input2.UserInputType == Enum.UserInputType.MouseMovement or input2.UserInputType == Enum.UserInputType.Touch then
-		dragInput2 = input2
-	end
-end)
-
-UserInputService2.InputChanged:Connect(function(input2)
-	if input2 == dragInput2 and dragging2 then
-		update2(input2)
-	end
-end)
+FlyFrame.Active = true
+FlyFrame.Draggable = true
+FlyFrame.Selectable = true
 
 UNXHubUI.ResetOnSpawn = false -- DO NOT MESS WITH IT.
+
+
+if debugmode == true then
+	print("[DEBUG]: UI Should Be Draggable Now.")
+end
 
 ApplyFPS.MouseButton1Click:Connect(fpscap)
 InfJumpB.MouseButton1Click:Connect(InfJumpF)
@@ -2116,17 +2308,30 @@ OpenUNX.MouseButton1Click:Connect(OpenUNX1)
 LocalPlayerTab1.MouseButton1Click:Connect(SwitchTab1)
 ESPTab2.MouseButton1Click:Connect(SwitchTab2)
 OtherTab3.MouseButton1Click:Connect(SwitchTab3)
-ConfigTab4.MouseButton1Click:Connect(SwitchTab4)
+FastButtonTab4.MouseButton1Click:Connect(SwitchTab4)
+ConfigTab5.MouseButton1Click:Connect(SwitchTab5)
 button.MouseButton1Click:Connect(toggleTracers)
-button1.MouseButton1Click:Connect(toggleSkeleton)
+EnableSkel.MouseButton1Click:Connect(toggleSkeleton)
 ScaleUI.MouseButton1Click:Connect(ChangeScale)
+NoclipFF.MouseButton1Click:Connect(FF1)
+RejFF.MouseButton1Click:Connect(FF2)
+AimLockFF.MouseButton1Click:Connect(FF3)
+InfjumpFF.MouseButton1Click:Connect(FF4)
+RejoinFastButton.MouseButton1Click:Connect(Rejoin)
+NoclipFastButton.MouseButton1Click:Connect(ToggleNoclip)
+
 TurnOnBoxESP()
+
+
+if debugmode == true then
+	print("[DEBUG]: Linked All Buttons To Function.")
+end
 
 print("[SUCESS]: All Functions & Buttons Done, Step (3/3) Done.")
 
 
 local phrases = {
-	"[SUCESS]: UNXHub Loaded Without Any Errors!, Maybe",
+	"UNXHub Loaded Without Any Errors!, Maybe",
 	"Let Him Cook",
 	"Let Me Cook",
 	"UNXHub Is Now Done Loading",
