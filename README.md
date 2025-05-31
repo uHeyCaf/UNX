@@ -31,5 +31,6 @@ This project was created for **personal learning** and **experimentation** with 
 - **Copy Current Server JobID**  
 - **Rejoin Server**  
 - **UI Scale Adjustment**
+- **Player AimLock**
 
 ---
