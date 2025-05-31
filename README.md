@@ -1,6 +1,6 @@
 # UNXHub
 
-**Version:** **1.1.2a**  
+**Version:** **1.1.3**  
 **Tested Executors:** **Ronix**, **Codex**, **Delta**, **F^W (FrostWare)**
 
 ---
