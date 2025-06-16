@@ -1,5 +1,5 @@
 
--- :v
+-- rip old notification system...
 
 local player = game.Players.LocalPlayer
 local exec = (type(identifyexecutor) == "function" and identifyexecutor()) or "Not Possible To Fetch Executor Name, Your Executor Probably Dont Support identifyexecutor()"
@@ -2356,5 +2356,5 @@ local phrases = {
 
 print("[NEUTRAL]: ".. phrases[math.random(#phrases)])
 
-
+ShowNotification("Warning", "This Notification System May Be Removed... :(", 10)
 ShowNotification("Welcome, ".. LocalPlayer.Name .."!", "Welcome To UNXHub ".. LocalPlayer.Name .."!", 5)
