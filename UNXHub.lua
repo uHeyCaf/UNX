@@ -654,7 +654,7 @@ Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title.BorderSizePixel = 0
 Title.Size = UDim2.new(1, 0, 0.785714269, 0)
 Title.Font = Enum.Font.SourceSansLight
-Title.Text = "UNXHub (1.1.3b)"
+Title.Text = "UNXHub (1.1.4)"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 18.000
 Title.TextWrapped = true
@@ -1069,102 +1069,231 @@ local function CreateTween(Object, Goal, Duration)
 	Tween:Play()
 end
 
-local function ShowNotification(Title, Message, Duration)
-	local NotificationBox = Instance.new("Frame")
-	local BoxCorner = Instance.new("UICorner")
-	local TitleText = Instance.new("TextLabel")
-	local MessageText = Instance.new("TextLabel")
-	local IconImage = Instance.new("ImageLabel")
-	local IconCorner = Instance.new("UICorner")
-	local UIScale_41 = Instance.new("UIScale")
+local aa = game:GetService("TweenService")
+local ab = game:GetService("UserInputService")
+local ac = game:GetService("ContextActionService")
+local ad = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local ae = game:GetService("Lighting")
 
-	NotificationBox.Name = "NotificationBox"
-	NotificationBox.BackgroundColor3 = Color3.fromRGB(0, 7, 32)
-	NotificationBox.BorderSizePixel = 0
-	NotificationBox.Size = UDim2.new(0.3, 0, 0.1, 0)
-	NotificationBox.AnchorPoint = Vector2.new(1, 1)
-	NotificationBox.Position = UDim2.new(1.3, 0, 0.99, 0)
-	NotificationBox.Parent = UNXHubUI
-	BoxCorner.Parent = NotificationBox
+function errCall(af, ag, ah, ai, aj)
+    local ak = Instance.new("Sound", ad)
+    ak.SoundId = "rbxassetid://8486683243"
+    ak:Play()
 
-	UIScale_41.Parent = NotificationBox
-	UIScale_41.Scale = 1
+    local al = Instance.new("Sound", ad)
+    al.SoundId = "rbxassetid://6895079853"
 
-	TitleText.Name = "TitleText"
-	TitleText.Parent = NotificationBox
-	TitleText.BackgroundTransparency = 1
-	TitleText.Position = UDim2.new(0.2, 0, 0.15, 0)
-	TitleText.Size = UDim2.new(0.75, 0, 0.3, 0)
-	TitleText.Font = Enum.Font.SourceSansLight
-	TitleText.Text = Title
-	TitleText.TextColor3 = Color3.fromRGB(255, 255, 255)
-	TitleText.TextScaled = true
-	TitleText.TextWrapped = true
-	TitleText.TextXAlignment = Enum.TextXAlignment.Left
+    local am = Instance.new("Sound", ad)
+    am.SoundId = "rbxassetid://6042053626"
+    am.Looped = true
+    am.Volume = 0
+    am.Pitch = 0.5
+    am.PlaybackSpeed = 2
+    am:Play()
 
-	MessageText.Name = "MessageText"
-	MessageText.Parent = NotificationBox
-	MessageText.BackgroundTransparency = 1
-	MessageText.Position = UDim2.new(0.2, 0, 0.55, 0)
-	MessageText.Size = UDim2.new(0.75, 0, 0.3, 0)
-	MessageText.Font = Enum.Font.SourceSansLight
-	MessageText.Text = Message
-	MessageText.TextColor3 = Color3.fromRGB(255, 255, 255)
-	MessageText.TextScaled = true
-	MessageText.TextWrapped = true
-	MessageText.TextXAlignment = Enum.TextXAlignment.Left
+    local an = Instance.new("BlurEffect")
+    an.Size = 0
+    an.Parent = ae
+    aa:Create(an, TweenInfo.new(0.3), {Size = 15}):Play()
 
-	IconImage.Name = "IconImage"
-	IconImage.Parent = NotificationBox
-	IconImage.BackgroundTransparency = 1
-	IconImage.Position = UDim2.new(0.03, 0, 0.1, 0)
-	IconImage.Size = UDim2.new(0.15, 0, 0.8, 0)
-	IconImage.Image = "rbxassetid://84759093733650"
-	IconCorner.Parent = IconImage
+    local ao = Instance.new("ScreenGui")
+    ao.Name = "ErrorGui"
+    ao.IgnoreGuiInset = true
+    ao.ResetOnSpawn = false
+    ao.Parent = ad
 
-	if debugmode == true then
-		print("[DEBUG]: Called Notification, Title = ".. Title ..", Message = ".. Message ..", Duration = ".. Duration .."!")	
-	end
+    local ap = Instance.new("Frame")
+    ap.Size = UDim2.fromOffset(200, 125)
+    ap.Position = UDim2.fromScale(0.5, 0.5) - UDim2.fromOffset(100, 62.5)
+    ap.BackgroundColor3 = Color3.new(0, 0, 0)
+    ap.BackgroundTransparency = 0.75
+    ap.ZIndex = 0
+    ap.Parent = ao
+    Instance.new("UICorner", ap).CornerRadius = UDim.new(0, 8)
 
-	table.insert(ActiveNotifications, NotificationBox)
+    local aq = Instance.new("Frame")
+    aq.Size = UDim2.fromOffset(200, 125)
+    aq.Position = ap.Position
+    aq.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+    aq.BorderSizePixel = 0
+    aq.ZIndex = 1
+    aq.Parent = ao
+    Instance.new("UICorner", aq).CornerRadius = UDim.new(0, 8)
 
-	for Index, Notification in ipairs(ActiveNotifications) do
-		local FinalPosition = UDim2.new(0.99, 0, 0.99 - (0.11 * (Index - 1)), 0)
-		CreateTween(Notification, FinalPosition, 0.35)
-	end
+    local ar = Instance.new("Frame")
+    ar.Size = UDim2.new(1, 0, 0, 35)
+    ar.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+    ar.BorderSizePixel = 0
+    ar.ZIndex = 2
+    ar.Parent = aq
+    Instance.new("UICorner", ar).CornerRadius = UDim.new(0, 8)
 
-	CreateTween(NotificationBox, UDim2.new(0.99, 0, 0.99 - (0.11 * (#ActiveNotifications - 1)), 0), 0.35)
+    local as = Instance.new("ImageLabel")
+    as.Size = UDim2.fromOffset(26, 26)
+    as.Position = UDim2.new(0, 8, 0.5, -13)
+    as.BackgroundTransparency = 1
+    as.Image = "rbxassetid://84759093733650"
+    as.ZIndex = 3
+    as.Parent = ar
+    Instance.new("UICorner", as).CornerRadius = UDim.new(0, 6)
 
-	local sound = Instance.new("Sound")
-	sound.SoundId = "rbxassetid://8551372796"
-	sound.Volume = 1
-	sound.Parent = workspace
-	sound:Play()
-	sound.Ended:Connect(function()
-		sound:Destroy()
-	end)
+    local at = Instance.new("TextLabel")
+    at.Size = UDim2.new(1, -50, 1, 0)
+    at.Position = UDim2.fromOffset(40, 0)
+    at.BackgroundTransparency = 1
+    at.Text = af or "Unlisted Error"
+    at.Font = Enum.Font.SourceSansLight
+    at.TextSize = 20
+    at.TextColor3 = Color3.new(1, 1, 1)
+    at.TextXAlignment = Enum.TextXAlignment.Left
+    at.ZIndex = 3
+    at.Parent = ar
 
-	task.delay(Duration, function()
-		if NotificationBox and NotificationBox.Parent then
-			CreateTween(NotificationBox, UDim2.new(1.3, 0, NotificationBox.Position.Y.Scale, 0), 0.35)
-			task.wait(0.35)
-			NotificationBox:Destroy()
-		end
+    local av = Instance.new("TextLabel")
+    av.Size = UDim2.new(1, -40, 0, 45)
+    av.Position = UDim2.fromOffset(20, 40)
+    av.BackgroundTransparency = 1
+    av.Text = ag or "Unlisted Error Occured, Please Press /console For More Information."
+    av.Font = Enum.Font.SourceSansLight
+    av.TextSize = 17
+    av.TextWrapped = true
+    av.TextYAlignment = Enum.TextYAlignment.Top
+    av.TextXAlignment = Enum.TextXAlignment.Left
+    av.TextColor3 = Color3.new(1,1,1)
+    av.ZIndex = 2
+    av.Parent = aq
 
-		for i, Notification in ipairs(ActiveNotifications) do
-			if Notification == NotificationBox then
-				table.remove(ActiveNotifications, i)
-				break
-			end
-		end
+    local aw = Instance.new("TextButton")
+    aw.Size = UDim2.new(0.4, 0, 0, 35)
+    aw.Position = aj and UDim2.new(0.08, 0, 1, -45) or UDim2.new(0.3, 0, 1, -45)
+    aw.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+    aw.Text = ah or "OK"
+    aw.Font = Enum.Font.SourceSansLight
+    aw.TextSize = 17
+    aw.TextColor3 = Color3.new(1,1,1)
+    aw.ZIndex = 3
+    aw.Parent = aq
+    Instance.new("UICorner", aw).CornerRadius = UDim.new(0,6)
+    if debugmode == true then
+		print("[DEBUG]: Called Notification, Title = ".. af  ..", Message = ".. ag .."!")	
+    end
+    local ax
+    if aj then
+        ax = Instance.new("TextButton")
+        ax.Size = UDim2.new(0.4, 0, 0, 35)
+        ax.Position = UDim2.new(0.52, 0, 1, -45)
+        ax.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+        ax.Text = ai or "Cancel"
+        ax.Font = Enum.Font.SourceSansLight
+        ax.TextSize = 17
+        ax.TextColor3 = Color3.new(1,1,1)
+        ax.ZIndex = 3
+        ax.Parent = aq
+        Instance.new("UICorner", ax).CornerRadius = UDim.new(0,6)
+    end
 
-		for i, Notification in ipairs(ActiveNotifications) do
-			local Position = UDim2.new(0.99, 0, 0.99 - (0.11 * (i - 1)), 0)
-			CreateTween(Notification, Position, 0.35)
-		end
-	end)
+    local ay = Instance.new("Frame")
+    ay.Size = UDim2.fromOffset(20, 20)
+    ay.Position = UDim2.new(1, -20, 1, -20)
+    ay.BackgroundColor3 = Color3.fromRGB(5, 8, 70)
+    ay.BorderSizePixel = 0
+    ay.ZIndex = 3
+    ay.Parent = aq
+    Instance.new("UICorner", ay).CornerRadius = UDim.new(0,4)
+
+    local az, ba, bb = false, nil, nil
+    local bc, bd, be = false, nil, nil
+    local bf = Color3.fromRGB(5, 8, 70)
+    local bg = Color3.fromRGB(3, 6, 50)
+    
+    local bh = {}
+
+    bh[#bh + 1] = ar.InputBegan:Connect(function(bi)
+        if bi.UserInputType == Enum.UserInputType.MouseButton1 or bi.UserInputType == Enum.UserInputType.Touch then
+            az = true
+            ba = bi.Position
+            bb = aq.Position
+        end
+    end)
+
+    bh[#bh + 1] = ar.InputEnded:Connect(function(bi)
+        if bi.UserInputType == Enum.UserInputType.MouseButton1 or bi.UserInputType == Enum.UserInputType.Touch then
+            az = false
+        end
+    end)
+
+    bh[#bh + 1] = ay.InputBegan:Connect(function(bi)
+        if bi.UserInputType == Enum.UserInputType.MouseButton1 or bi.UserInputType == Enum.UserInputType.Touch then
+            bc = true
+            bd = bi.Position
+            be = aq.Size
+            aa:Create(ay, TweenInfo.new(0.15), {BackgroundColor3 = bg}):Play()
+            am.Volume = 0.3
+        end
+    end)
+
+    bh[#bh + 1] = ay.InputEnded:Connect(function(bi)
+        if bi.UserInputType == Enum.UserInputType.MouseButton1 or bi.UserInputType == Enum.UserInputType.Touch then
+            bc = false
+            aa:Create(ay, TweenInfo.new(0.15), {BackgroundColor3 = bf}):Play()
+            am.Volume = 0
+        end
+    end)
+
+    bh[#bh + 1] = ab.InputChanged:Connect(function(bi)
+        if bi.UserInputType == Enum.UserInputType.MouseMovement or bi.UserInputType == Enum.UserInputType.Touch then
+            if az and ba then
+                local bj = bi.Position - ba
+                aq.Position = UDim2.new(
+                    bb.X.Scale, bb.X.Offset + bj.X,
+                    bb.Y.Scale, bb.Y.Offset + bj.Y
+                )
+                ap.Position = aq.Position
+            elseif bc and bd then
+                local bj = bi.Position - bd
+                local bk = math.clamp(be.X.Offset + bj.X, 200, 800)
+                local bl = math.clamp(be.Y.Offset + bj.Y, 125, 600)
+                aq.Size = UDim2.fromOffset(bk, bl)
+                ap.Size = aq.Size
+            end
+        end
+    end)
+
+    bh[#bh + 1] = ab.InputEnded:Connect(function(bi)
+        if bi.UserInputType == Enum.UserInputType.MouseButton1 or bi.UserInputType == Enum.UserInputType.Touch then
+            if az then
+                az = false
+            end
+            if bc then
+                bc = false
+                aa:Create(ay, TweenInfo.new(0.15), {BackgroundColor3 = bf}):Play()
+                am.Volume = 0
+            end
+        end
+    end)
+
+    local function bm(bn)
+        for _, bo in pairs(bh) do
+            bo:Disconnect()
+        end
+        
+        local bp = bn.AbsolutePosition
+        local bq = bn.AbsoluteSize
+        local br = bp + bq/2
+        al:Play()
+        aa:Create(an, TweenInfo.new(0.3), {Size = 0}):Play()
+        local bs = {Size = UDim2.fromOffset(0,0), Position = UDim2.fromOffset(br.X, br.Y)}
+        local bt = aa:Create(aq, TweenInfo.new(0.2), bs)
+        local bu = aa:Create(ap, TweenInfo.new(0.2), bs)
+        bt:Play(); bu:Play(); bt.Completed:Wait()
+        ao:Destroy(); an:Destroy(); ak:Destroy(); al:Destroy(); am:Destroy()
+    end
+	
+    aw.MouseButton1Click:Connect(function() bm(aw) end)
+    if ax then
+        ax.MouseButton1Click:Connect(function() bm(ax) end)
+    end
 end
-
 
 if debugmode == true then
 	print("[DEBUG]: Notification System Completed Sucessfuly!")
@@ -1639,12 +1768,24 @@ local function ChangeScale()
 	local value = ScaleTxT.Text
 
 	if value >= "2.000000000000000000001" then
-		ShowNotification("Failed To Set Scale", "Please, Set Scale In This Range: 2-0.5", 5)
+		errCall(
+			"Wild Error Found!",
+			"Please, Input The Scale Range In This Range: 0.5-2",
+			"OK",
+			":D",
+			false
+		)
 		ScaleTxT.Text = "Please, Set Scale In This Range: 2-0.5"
 		wait(1)
 		ScaleTxT.Text = ""
 	elseif value <= "0.49999999999999999" then
-		ShowNotification("Failed To Set Scale", "Please, Set Scale In This Range: 2-0.5", 5)
+		errCall(
+			"Wild Error Found!",
+			"Please, Input The Scale Range In This Range: 0.5-2",
+			"OK",
+			":D",
+			false
+		)
 		ScaleTxT.Text = "Please, Set Scale In This Range: 2-0.5"
 		wait(1)
 		ScaleTxT.Text = ""
@@ -1672,7 +1813,13 @@ local function CopyJobID1()
 		toclipboard(jobID)
 		print("[SUCESS]: JobID: ".. jobID	.." Copied To Clipboard.")
 	else
-		ShowNotification("Wild Error Found!", "Your Executor: ".. exec .." Does Not Support: toclipboard() or setclipboard().", 5)
+		errCall(
+			"Wild Error Found!",
+			"Your Executor: ".. exec .." Does Not Support: toclipboard() or setclipboard().",
+			"OK",
+			":D",
+			false
+		)
 		warn("[ERROR]: Your Executor: ".. exec .." Does Not Support: toclipboard() or setclipboard(). ")
 	end
 end
@@ -1841,7 +1988,6 @@ local function Rejoin()
 	if debugmode == true then
 		print("[DEBUG]: Rejoining...")
 	end
-	ShowNotification("Please Wait...", "Rejoining Server, Please Wait...", 5)
 	tpservice:TeleportToPlaceInstance(placeID, jobID, game.Players.LocalPlayer)
 end
 
@@ -1850,7 +1996,14 @@ local function fpscap()
 	if valueoffps then
 		setfpscap(valueoffps)
 	else
-		ShowNotification("Wild Error Found!", "Invalid FPS Value: ".. tostring(FPSTextBox.Text) .."!", 5)
+	        errCall(
+       
+			"Wild Error Found!",
+			"Unknown FPS Value Found: ".. tostring(FPSTextBox.Text) .."!",
+			"OK",
+			":D",
+			false
+		)
 		warn("[ERROR]: Invalid FPS value: " .. tostring(FPSTextBox.Text))
 	end
 end
@@ -2356,5 +2509,21 @@ local phrases = {
 
 print("[NEUTRAL]: ".. phrases[math.random(#phrases)])
 
-ShowNotification("Warning", "This Notification System May Be Removed... :(", 10)
-ShowNotification("Welcome, ".. LocalPlayer.Name .."!", "Welcome To UNXHub ".. LocalPlayer.Name .."!", 5)
+errCall(
+    "Welcome",
+    "Welcome To UNXHub ".. game.Players.LocalPlayer.name .."!",
+    "Thanks",
+    ":D",
+    false
+)
+
+if debugmode == true then
+	errCall(
+		"Test",
+		"Test ".. game.Players.LocalPlayer.name .."!",
+		"OKs",
+		":D",
+		false
+	)
+	print("[DEBUG]: Testing Notification System Completed Sucessfuly!")
+end
