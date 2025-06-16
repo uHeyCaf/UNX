@@ -1,7 +1,7 @@
 # UNXHub
 
-**Version:** **1.1.3b**  
-**Tested Executors:** **Ronix**, **Codex**, **Delta**, **F^W (FrostWare)**
+**Version:** **1.1.4**  
+**Tested Executors:** **Ronix (1.1.3b)**, **Codex**, **Delta**, **F^W (FrostWare, 1.1.3b)**
 
 ---
 
