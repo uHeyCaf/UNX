@@ -1098,14 +1098,19 @@ function errCall(af, ag, ah, ai, aj)
     an.Parent = ae
     aa:Create(an, TweenInfo.new(0.3), {Size = 15}):Play()
 
+    local ao = Instance.new("ScreenGui")
+    ao.Name = "ErrorGui"
+    ao.IgnoreGuiInset = true
+    ao.ResetOnSpawn = false
+    ao.Parent = ad
+
     local ap = Instance.new("Frame")
     ap.Size = UDim2.fromOffset(200, 125)
     ap.Position = UDim2.fromScale(0.5, 0.5) - UDim2.fromOffset(100, 62.5)
     ap.BackgroundColor3 = Color3.new(0, 0, 0)
     ap.BackgroundTransparency = 0.75
     ap.ZIndex = 0
-    ap.Parent = UNXHubUI
-    ap.ZIndex = 999
+    ap.Parent = ao
     Instance.new("UICorner", ap).CornerRadius = UDim.new(0, 8)
 
     local aq = Instance.new("Frame")
@@ -1113,8 +1118,8 @@ function errCall(af, ag, ah, ai, aj)
     aq.Position = ap.Position
     aq.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
     aq.BorderSizePixel = 0
-    aq.Parent = UNXHubUI
-    aq.ZIndex = 999
+    aq.ZIndex = 1
+    aq.Parent = ao
     Instance.new("UICorner", aq).CornerRadius = UDim.new(0, 8)
 
     local ar = Instance.new("Frame")
