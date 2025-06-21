@@ -1104,7 +1104,7 @@ function errCall(af, ag, ah, ai, aj)
     ap.BackgroundColor3 = Color3.new(0, 0, 0)
     ap.BackgroundTransparency = 0.75
     ap.ZIndex = 0
-    ap.Parent = game.CoreGui
+    ap.Parent = UNXHubUI
     ap.ZIndex = 999
     Instance.new("UICorner", ap).CornerRadius = UDim.new(0, 8)
 
@@ -1113,7 +1113,7 @@ function errCall(af, ag, ah, ai, aj)
     aq.Position = ap.Position
     aq.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
     aq.BorderSizePixel = 0
-    aq.Parent = game.CoreGui
+    aq.Parent = UNXHubUI
     aq.ZIndex = 999
     Instance.new("UICorner", aq).CornerRadius = UDim.new(0, 8)
 
