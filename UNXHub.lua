@@ -1074,7 +1074,7 @@ end
 local aa = game:GetService("TweenService")
 local ab = game:GetService("UserInputService")
 local ac = game:GetService("ContextActionService")
-local ad = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+local ad = game.CoreGui
 local ae = game:GetService("Lighting")
 
 function errCall(af, ag, ah, ai, aj)
