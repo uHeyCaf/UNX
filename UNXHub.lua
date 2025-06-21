@@ -1,5 +1,5 @@
 
--- all of your bases are ours!
+-- rip old notification system...
 
 local player = game.Players.LocalPlayer
 local exec = (type(identifyexecutor) == "function" and identifyexecutor()) or "Not Possible To Fetch Executor Name, Your Executor Probably Dont Support identifyexecutor()"
@@ -25,7 +25,7 @@ print("-------------- UXNHub Debugger Info --------------")
 
 -- DebugMode Usage: Find Errors In Script.
 version = "1.1.4a"
-debugmode = true
+debugmode = false
 -- probably wont use this 
 rgbmode = false
 
