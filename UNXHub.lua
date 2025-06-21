@@ -1,5 +1,5 @@
 
--- rip old notification system...
+-- all of your bases are ours!
 
 local player = game.Players.LocalPlayer
 local exec = (type(identifyexecutor) == "function" and identifyexecutor()) or "Not Possible To Fetch Executor Name, Your Executor Probably Dont Support identifyexecutor()"
@@ -21,11 +21,13 @@ print("UserID: " .. player.UserId)
 print("Local Executor: " .. exec)
 print("Local Executor Level:")
 printidentity()
-print("-------------- UXNHub Loaded Info --------------")
+print("-------------- UXNHub Debugger Info --------------")
 
 -- DebugMode Usage: Find Errors In Script.
-
-debugmode = false
+version = "1.1.4a"
+debugmode = true
+-- probably wont use this 
+rgbmode = false
 
 if debugmode == true then
 	print("[DEBUG]: Creating Variables For The UI, Please Wait")
@@ -164,14 +166,14 @@ btnsfx.SoundId = "rbxassetid://107511012621133"
 btnsfx.Parent = workspace
 
 UNXHubUI.Name = "UNXHubUI"
-UNXHubUI.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+UNXHubUI.Parent = game.CoreGui
 UNXHubUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 if debugmode == true then
 	print("[DEBUG]: Calling Ban API, Please Wait...")
 end
 
--- loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
 
 OpenUNX.Name = "OpenUNX"
 OpenUNX.Parent = UNXHubUI
@@ -654,7 +656,7 @@ Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title.BorderSizePixel = 0
 Title.Size = UDim2.new(1, 0, 0.785714269, 0)
 Title.Font = Enum.Font.SourceSansLight
-Title.Text = "UNXHub (1.1.4)"
+Title.Text = "UNXHub (1.1.4a)"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 18.000
 Title.TextWrapped = true
@@ -667,7 +669,7 @@ logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 logo.BorderSizePixel = 0
 logo.Position = UDim2.new(0.00625000009, 0, 0.142857149, 0)
 logo.Size = UDim2.new(0.0296874978, 0, 0.678571403, 0)
-logo.Image = "rbxassetid://84759093733650"
+logo.Image = "rbxassetid://137779536741206"
 logo.ScaleType = Enum.ScaleType.Crop
 
 UICorner_30.Parent = logo
@@ -1132,7 +1134,7 @@ function errCall(af, ag, ah, ai, aj)
     as.Size = UDim2.fromOffset(26, 26)
     as.Position = UDim2.new(0, 8, 0.5, -13)
     as.BackgroundTransparency = 1
-    as.Image = "rbxassetid://84759093733650"
+    as.Image = "rbxassetid://137779536741206"
     as.ZIndex = 3
     as.Parent = ar
     Instance.new("UICorner", as).CornerRadius = UDim.new(0, 6)
@@ -2510,20 +2512,91 @@ local phrases = {
 print("[NEUTRAL]: ".. phrases[math.random(#phrases)])
 
 errCall(
-    "Welcome",
-    "Welcome To UNXHub ".. game.Players.LocalPlayer.name .."!",
-    "Thanks",
-    ":D",
+    "Welcome!",
+    "Welcome To UNXHub".. game.Players.LocalPlayer.Name .."!",
+    "Thanks!",
+    "Continue",
     false
 )
 
 if debugmode == true then
 	errCall(
-		"Test",
-		"Test ".. game.Players.LocalPlayer.name .."!",
-		"OKs",
+		"Debug Mode",
+		"Warning, DebugMode Is Active.",
+		"OK",
 		":D",
 		false
 	)
 	print("[DEBUG]: Testing Notification System Completed Sucessfuly!")
+	print("[DEBUG]: Current Version: ".. version .."!")
 end
+
+-- TESTING AREA...
+
+local ba = game:GetService("Players").LocalPlayer
+local bb = ba:WaitForChild("PlayerGui"):WaitForChild("UNXHubUI", 5)
+if not bb then return end
+
+local bc, bd, be = {}, {}, {}
+
+local function bf(bg)
+	for _, bh in pairs(bg:GetChildren()) do
+		if bh:IsA("Frame") then
+			table.insert(bc, bh)
+		elseif bh:IsA("TextButton") then
+			table.insert(bd, bh)
+		elseif bh:IsA("TextBox") then
+			table.insert(be, bh)
+		end
+		bf(bh)
+	end
+end
+
+bf(bb)
+
+local bi = game:GetService("RunService")
+
+local function bj(bk, bl, bm)
+	local bn = math.floor(bk * 6)
+	local bo = bk * 6 - bn
+	local bp = bm * (1 - bl)
+	local bq = bm * (1 - bo * bl)
+	local br = bm * (1 - (1 - bo) * bl)
+	bn = bn % 6
+	if bn == 0 then return Color3.new(bm, br, bp)
+	elseif bn == 1 then return Color3.new(bq, bm, bp)
+	elseif bn == 2 then return Color3.new(bp, bm, br)
+	elseif bn == 3 then return Color3.new(bp, bq, bm)
+	elseif bn == 4 then return Color3.new(br, bp, bm)
+	elseif bn == 5 then return Color3.new(bm, bp, bq)
+	end
+end
+
+local bs = 0
+
+bi.RenderStepped:Connect(function(bt)
+	if not rgbmode then return end
+
+	bs = (bs + bt * 0.1) % 1
+	local bu = bj(bs, 1, 1)
+	local bv = bj(bs, 1, 0.8)
+	local bw = bj(bs, 1, 0.6)
+
+	for _, bx in ipairs(bc) do
+		if bx and bx.Parent then
+			bx.BackgroundColor3 = bu
+		end
+	end
+
+	for _, by in ipairs(bd) do
+		if by and by.Parent then
+			by.BackgroundColor3 = bv
+		end
+	end
+
+	for _, bz in ipairs(be) do
+		if bz and bz.Parent then
+			bz.BackgroundColor3 = bw
+		end
+	end
+end)
