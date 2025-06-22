@@ -14,9 +14,7 @@ local BannedGames = {
 
 for _, banInfo in ipairs(BannedUsers) do
     if plr.UserId == banInfo.UserId then
-        if plr:FindFirstChild("PlayerGui") and plr.PlayerGui:FindFirstChild("UNXHubUI") then
-            plr.PlayerGui.UNXHubUI:Destroy()
-        end
+        plr.PlayerGui.UNXHubUI:Destroy()
         print("[API]: User is banned from using UNXHub. Reason: " .. banInfo.Reason)
         plr:Kick("Sorry, but you are banned from using the main loadstring.\nReason: " .. banInfo.Reason)
         return
@@ -25,9 +23,7 @@ end
 
 for _, banInfo in ipairs(BannedGames) do
     if game.PlaceId == banInfo.PlaceId then
-        if plr:FindFirstChild("PlayerGui") and plr.PlayerGui:FindFirstChild("UNXHubUI") then
-            plr.PlayerGui.UNXHubUI:Destroy()
-        end
+        plr.PlayerGui.UNXHubUI:Destroy()
         print("[API]: Game is banned from using UNXHub. Reason: " .. banInfo.Reason)
         plr:Kick("Sorry, but the game you are playing is banned from using UNXHub.\nReason: " .. banInfo.Reason)
         return
