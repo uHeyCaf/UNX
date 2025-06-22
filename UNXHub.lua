@@ -1,8 +1,9 @@
 
--- rip old notification system...
+-- yeah bro pro coding here rn 😎😎😎😎
 
 local player = game.Players.LocalPlayer
 local exec = (type(identifyexecutor) == "function" and identifyexecutor()) or "Not Possible To Fetch Executor Name, Your Executor Probably Dont Support identifyexecutor()"
+version = "1.1.4b"
 
 print([[
 
@@ -14,7 +15,7 @@ print([[
  \___/\_| \_/\/   \/\_| |_/\__,_|_.__/  
 
 ]])
-print("UNXHub: Revamped (1.0.0) :D")
+print("UNXHub ".. version .." :D")
 print("Player Name: " .. player.Name)
 print("Display Name: " .. player.DisplayName)
 print("UserID: " .. player.UserId)
@@ -24,10 +25,7 @@ printidentity()
 print("-------------- UXNHub Debugger Info --------------")
 
 -- DebugMode Usage: Find Errors In Script.
-version = "1.1.4a"
 debugmode = false
--- probably wont use this 
-rgbmode = false
 
 if debugmode == true then
 	print("[DEBUG]: Creating Variables For The UI, Please Wait")
@@ -42,7 +40,7 @@ local RunService = game:GetService("RunService")
 local LocalPlayer = Players.LocalPlayer
 local Camera = workspace.CurrentCamera
 local UNXHubUI = Instance.new("ScreenGui")
-local OpenUNX = Instance.new("TextButton")
+local OpenUNX = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local TabsFrame = Instance.new("Frame")
 local ButtonSafeArea = Instance.new("Frame")
@@ -155,15 +153,19 @@ local UIScale_3 = Instance.new("UIScale")
 local btnsfx = Instance.new("Sound")
 local UICorner_39F = Instance.new("UICorner")
 local UICorner_40F = Instance.new("UICorner")
-
+local sfxfldr = Instance.new("Folder")
 if debugmode == true then
 	print("[DEBUG]: All Variables Created, Setting Up UI...")
 end
 
 print("[SUCESS]: Variables Set, Step (1/3) Complete.")
 
-btnsfx.SoundId = "rbxassetid://107511012621133"
-btnsfx.Parent = workspace
+sfxfldr.Name = "sfxfldr"
+sfxfldr.Parent = workspace
+
+btnsfx.Name = "btnsfx"
+btnsfx.SoundId = "rbxassetid://139800881181209"
+btnsfx.Parent = sfxfldr
 
 UNXHubUI.Name = "UNXHubUI"
 UNXHubUI.Parent = game.CoreGui
@@ -181,16 +183,18 @@ OpenUNX.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
 OpenUNX.BorderColor3 = Color3.fromRGB(0, 0, 0)
 OpenUNX.BorderSizePixel = 0
 OpenUNX.Position = UDim2.new(0.00691881916, 0, 0.0139082056, 0)
-OpenUNX.Size = UDim2.new(0.0761070102, 0, 0.152990267, 0)
+OpenUNX.Size = UDim2.new(0.1, 0, 0.1, 0)
 OpenUNX.Visible = false
 OpenUNX.ZIndex = 999999999
-OpenUNX.Font = Enum.Font.SourceSansLight
-OpenUNX.Text = "Open UNXHub!"
-OpenUNX.TextColor3 = Color3.fromRGB(255, 255, 255)
-OpenUNX.TextSize = 24.000
-OpenUNX.TextWrapped = true
+OpenUNX.Image = "rbxassetid://137779536741206"
+OpenUNX.ImageColor3 = Color3.new(1, 1, 1)
+OpenUNX.ScaleType = Enum.ScaleType.Fit
 
-UICorner.CornerRadius = UDim.new(0, 5)
+local aspect = Instance.new("UIAspectRatioConstraint")
+aspect.AspectRatio = 1
+aspect.Parent = OpenUNX
+
+UICorner.CornerRadius = UDim.new(99, 99)
 UICorner.Parent = OpenUNX
 
 TabsFrame.Name = "TabsFrame"
@@ -656,7 +660,7 @@ Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title.BorderSizePixel = 0
 Title.Size = UDim2.new(1, 0, 0.785714269, 0)
 Title.Font = Enum.Font.SourceSansLight
-Title.Text = "UNXHub (1.1.4a)"
+Title.Text = "UNXHub (".. version ..")"
 Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title.TextSize = 18.000
 Title.TextWrapped = true
@@ -909,7 +913,7 @@ Title_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 Title_2.BorderSizePixel = 0
 Title_2.Size = UDim2.new(0.995744765, 0, 0.188118815, 0)
 Title_2.Font = Enum.Font.SourceSansLight
-Title_2.Text = "UNXFly UI V1"
+Title_2.Text = "UNXFly UI"
 Title_2.TextColor3 = Color3.fromRGB(255, 255, 255)
 Title_2.TextScaled = true
 Title_2.TextSize = 14.000
@@ -1079,11 +1083,12 @@ local ae = game:GetService("Lighting")
 
 function errCall(af, ag, ah, ai, aj)
     local ak = Instance.new("Sound", ad)
-    ak.SoundId = "rbxassetid://8486683243"
+    ak.SoundId = "rbxassetid://91660275693179"
     ak:Play()
-
+    ak.Pitch = 0.39998
+	
     local al = Instance.new("Sound", ad)
-    al.SoundId = "rbxassetid://6895079853"
+    al.SoundId = "rbxassetid://139800881181209"
 
     local am = Instance.new("Sound", ad)
     am.SoundId = "rbxassetid://6042053626"
@@ -1099,7 +1104,7 @@ function errCall(af, ag, ah, ai, aj)
     aa:Create(an, TweenInfo.new(0.3), {Size = 15}):Play()
 
     local ao = Instance.new("ScreenGui")
-    ao.Name = "ErrorGui"
+    ao.Name = "UNXErrorUI"
     ao.IgnoreGuiInset = true
     ao.ResetOnSpawn = false
     ao.Parent = ad
@@ -2439,6 +2444,26 @@ FlyFrame.Active = true
 FlyFrame.Draggable = true
 FlyFrame.Selectable = true
 
+InfJumpFastButton.Active = true
+InfJumpFastButton.Draggable = true
+InfJumpFastButton.Selectable = true
+
+AimLockFastButton.Active = true
+AimLockFastButton.Draggable = true
+AimLockFastButton.Selectable = true
+
+RejoinFastButton.Active = true
+RejoinFastButton.Draggable = true
+RejoinFastButton.Selectable = true
+
+NoclipFastButton.Active = true
+NoclipFastButton.Draggable = true
+NoclipFastButton.Selectable = true
+
+OpenUNX.Active = true
+OpenUNX.Draggable = true
+OpenUNX.Selectable = true
+
 UNXHubUI.ResetOnSpawn = false -- DO NOT MESS WITH IT.
 
 
@@ -2499,24 +2524,32 @@ local phrases = {
 	"Basically: UNXHub Is Loaded",
 	"Solara Also Steals Your Malware..., Wise Words...",
 	"Developer why UNXHub No Work?",
-	"The Current Time Is: ".. os.time() .."!",
+	"The Current Time Is: ".. os.time() ..", Iam Lazy To Format It",
 	"Hello :)",
 	"Hi :), Thanks For Using UNXHub!",
 	"From 1-10 i Choose: ".. math.random(1,10) .."!",
 	"Also Try InfiniteYield (If You Havent)",
 	"NEW FEATURES!1!!1!",
 	"ERM, ACTUALLY 🤓☝️",
-	"Should i Create a Discord Server?"
+	"Should i Create a Discord Server?",
+  "helloworld(print)",
+  "h",
+  "Hey Bro!",
+  "Developer When UNXHub Update?",
+  "Developer Why UNXHub No Work?, idk ask sterling",
+  "Sometimes I Do Beta Tests At: GitHub/uHeyCaf/ArrayField/BetaUNX.lua!",
+  "Hey Twin ✌️",
+  "Idk Nobody Asked But The Current Version Is: ".. version ..", We Started At 3.0.0 [BETA]"
 }
 
 print("[NEUTRAL]: ".. phrases[math.random(#phrases)])
 
 errCall(
-    "Welcome!",
-    "Welcome To UNXHub".. game.Players.LocalPlayer.Name .."!",
+    "Welcome",
+    "Welcome To UNXHub ".. game.Players.LocalPlayer.Name .."!",
     "Thanks!",
     "Continue",
-    false
+    true
 )
 
 if debugmode == true then
@@ -2530,73 +2563,4 @@ if debugmode == true then
 	print("[DEBUG]: Testing Notification System Completed Sucessfuly!")
 	print("[DEBUG]: Current Version: ".. version .."!")
 end
-
--- TESTING AREA...
-
-local ba = game:GetService("Players").LocalPlayer
-local bb = ba:WaitForChild("PlayerGui"):WaitForChild("UNXHubUI", 5)
-if not bb then return end
-
-local bc, bd, be = {}, {}, {}
-
-local function bf(bg)
-	for _, bh in pairs(bg:GetChildren()) do
-		if bh:IsA("Frame") then
-			table.insert(bc, bh)
-		elseif bh:IsA("TextButton") then
-			table.insert(bd, bh)
-		elseif bh:IsA("TextBox") then
-			table.insert(be, bh)
-		end
-		bf(bh)
-	end
-end
-
-bf(bb)
-
-local bi = game:GetService("RunService")
-
-local function bj(bk, bl, bm)
-	local bn = math.floor(bk * 6)
-	local bo = bk * 6 - bn
-	local bp = bm * (1 - bl)
-	local bq = bm * (1 - bo * bl)
-	local br = bm * (1 - (1 - bo) * bl)
-	bn = bn % 6
-	if bn == 0 then return Color3.new(bm, br, bp)
-	elseif bn == 1 then return Color3.new(bq, bm, bp)
-	elseif bn == 2 then return Color3.new(bp, bm, br)
-	elseif bn == 3 then return Color3.new(bp, bq, bm)
-	elseif bn == 4 then return Color3.new(br, bp, bm)
-	elseif bn == 5 then return Color3.new(bm, bp, bq)
-	end
-end
-
-local bs = 0
-
-bi.RenderStepped:Connect(function(bt)
-	if not rgbmode then return end
-
-	bs = (bs + bt * 0.1) % 1
-	local bu = bj(bs, 1, 1)
-	local bv = bj(bs, 1, 0.8)
-	local bw = bj(bs, 1, 0.6)
-
-	for _, bx in ipairs(bc) do
-		if bx and bx.Parent then
-			bx.BackgroundColor3 = bu
-		end
-	end
-
-	for _, by in ipairs(bd) do
-		if by and by.Parent then
-			by.BackgroundColor3 = bv
-		end
-	end
-
-	for _, bz in ipairs(be) do
-		if bz and bz.Parent then
-			bz.BackgroundColor3 = bw
-		end
-	end
-end)
+ 
