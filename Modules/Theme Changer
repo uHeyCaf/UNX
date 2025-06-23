@@ -1,30 +1,38 @@
 local a = game:GetService("CoreGui")
-local b = game:GetService("Workspace")
-local c = game:GetService("StarterGui")
+local b = game:GetService("StarterGui")
 
 if not a:FindFirstChild("UNXHubUI") then
-	c:SetCore("SendNotification", {
+	b:SetCore("SendNotification", {
 		Title = "Warning",
 		Text = "UNXHubUI was not found.",
 		Duration = 5
 	})
+	warn("[ERROR]: UNXHubUI was not found.")
 	return
 end
 
-if b:FindFirstChild("isunxthemeactivated") then
-	c:SetCore("SendNotification", {
-		Title = "Warning",
-		Text = "Could not execute because an instance of the Theme Changer is already running.",
-		Duration = 5
-	})
+if a:FindFirstChild("UNXHubTheme") then
+	a.UNXHubTheme.Enabled = true
 	return
 end
 
-local d = Instance.new("BoolValue")
-d.Name = "isunxthemeactivated"
-d.Parent = b
+print("-------------- UXNHub Themes Loaded --------------")
+print([[
 
-local e = {
+ _   _ _   _ __   __ _   _       _      
+| | | | \ | |\ \ / /| | | |     | |     
+| | | |  \| | \ V / | |_| |_   _| |__   
+| | | | . ` | /   \ |  _  | | | | '_ \  
+| |_| | |\  |/ /^\ \| | | | |_| | |_) | 
+ \___/\_| \_/\/   \/\_| |_/\__,_|_.__/  
+
+]])
+print("UNXHub Module: Theme Changer")
+print("UNXHub Module Version: 1.0")
+print("")
+print("-------------- UXNHub Debugger Info --------------")
+
+local c = {
 	Default = {Frame = Color3.fromRGB(0, 2, 39), Button = Color3.fromRGB(0, 4, 67), TextBox = Color3.fromRGB(22, 0, 109), TextColor = Color3.fromRGB(255, 255, 255)},
 	Red = {Frame = Color3.fromRGB(105, 1, 1), Button = Color3.fromRGB(130, 3, 3), TextBox = Color3.fromRGB(173, 3, 3), TextColor = Color3.fromRGB(255, 255, 255)},
 	Sunshine = {Frame = Color3.fromRGB(255, 240, 0), Button = Color3.fromRGB(255, 246, 107), TextBox = Color3.fromRGB(255, 250, 171), TextColor = Color3.fromRGB(0, 0, 0)},
@@ -35,7 +43,7 @@ local e = {
 	DeepSeaBlue = {Frame = Color3.fromRGB(1, 1, 99), Button = Color3.fromRGB(2, 2, 66), TextBox = Color3.fromRGB(3, 3, 43), TextColor = Color3.fromRGB(255, 255, 255)},
 	Purple = {Frame = Color3.fromRGB(60, 1, 105), Button = Color3.fromRGB(69, 3, 130), TextBox = Color3.fromRGB(88, 3, 173), TextColor = Color3.fromRGB(255, 255, 255)},
 	Pink = {Frame = Color3.fromRGB(233, 2, 245), Button = Color3.fromRGB(177, 2, 186), TextBox = Color3.fromRGB(124, 1, 130), TextColor = Color3.fromRGB(255, 255, 255)},
-	Wonden = {Frame = Color3.fromRGB(133, 84, 49), Button = Color3.fromRGB(110, 76, 52), TextBox = Color3.fromRGB(94, 70, 53), TextColor = Color3.fromRGB(255, 255, 255)},
+	Wooden = {Frame = Color3.fromRGB(133, 84, 49), Button = Color3.fromRGB(110, 76, 52), TextBox = Color3.fromRGB(94, 70, 53), TextColor = Color3.fromRGB(255, 255, 255)},
 	White = {Frame = Color3.fromRGB(255, 255, 255), Button = Color3.fromRGB(230, 232, 232), TextBox = Color3.fromRGB(204, 204, 204), TextColor = Color3.fromRGB(0, 0, 0)},
 	Gray = {Frame = Color3.fromRGB(38, 38, 38), Button = Color3.fromRGB(46, 46, 46), TextBox = Color3.fromRGB(61, 61, 61), TextColor = Color3.fromRGB(255, 255, 255)},
 	Black = {Frame = Color3.fromRGB(0, 0, 0), Button = Color3.fromRGB(15, 15, 15), TextBox = Color3.fromRGB(18, 18, 18), TextColor = Color3.fromRGB(255, 255, 255)},
@@ -43,168 +51,135 @@ local e = {
 	Orange = {Frame = Color3.fromRGB(255, 119, 8), Button = Color3.fromRGB(201, 98, 14), TextBox = Color3.fromRGB(135, 65, 8), TextColor = Color3.fromRGB(255, 255, 255)}
 }
 
-local f = {
-	"Default", "Red", "Sunshine", "Green", "Emerald", "Cyan", "Blue", "DeepSeaBlue", "Purple", "Pink", "Wonden",
-	"White", "Gray", "Black", "RedishOrange", "Orange", "Rainbow", "Randomizer", "Close"
-}
+local d = {"Default", "Red", "RedishOrange", "Orange", "Wooden", "Sunshine", "Green", "Emerald", "Cyan", "Blue", "DeepSeaBlue", "Purple", "Pink", "White", "Gray", "Black", "Rainbow", "Randomizer", "Close"}
+local e, f, g, h, i = "Default", "", nil, false, 0
 
-local g = "Default"
-local h = ""
-local i = nil
-local j = false
-local k = false
-local l = 0
+local j = Instance.new("ScreenGui", a)
+j.Name = "UNXHubTheme"
+j.IgnoreGuiInset = true
+j.ResetOnSpawn = false
 
-local m = Instance.new("ScreenGui")
-m.Name = "UNXHubTheme"
-m.IgnoreGuiInset = true
-m.ResetOnSpawn = false
-m.Parent = a
+local k = Instance.new("Frame", j)
+k.Name = "ThemeSelector"
+k.Size = UDim2.new(0.13, 0, 0.45, 0)
+k.Position = UDim2.new(0, 20, 0.5, 0)
+k.AnchorPoint = Vector2.new(0, 0.5)
+k.BackgroundColor3 = c.Default.Frame
 
-local n = Instance.new("Frame")
-n.Name = "ThemeSelector"
-n.Size = UDim2.new(0.13, 0, 0.45, 0)
-n.Position = UDim2.new(0, 20, 0.5, 0)
-n.AnchorPoint = Vector2.new(0, 0.5)
-n.BackgroundColor3 = e.Default.Frame
-n.Parent = m
+Instance.new("UICorner", k).CornerRadius = UDim.new(0, 12)
 
-local o = Instance.new("UICorner")
-o.CornerRadius = UDim.new(0, 12)
-o.Parent = n
+local l = Instance.new("ScrollingFrame", k)
+l.Size = UDim2.new(1, -10, 1, -10)
+l.Position = UDim2.new(0, 5, 0, 5)
+l.CanvasSize = UDim2.new(0, 0, 0, 0)
+l.ScrollBarThickness = 6
+l.BackgroundTransparency = 1
+l.BorderSizePixel = 0
 
-local p = Instance.new("ScrollingFrame")
-p.Size = UDim2.new(1, -10, 1, -10)
-p.Position = UDim2.new(0, 5, 0, 5)
-p.CanvasSize = UDim2.new(0, 0, 0, 0)
-p.ScrollBarThickness = 6
-p.BackgroundTransparency = 1
-p.BorderSizePixel = 0
-p.Parent = n
+local m = Instance.new("UIListLayout", l)
+m.Padding = UDim.new(0, 5)
+m.SortOrder = Enum.SortOrder.LayoutOrder
 
-local q = Instance.new("UIListLayout")
-q.Padding = UDim.new(0, 5)
-q.SortOrder = Enum.SortOrder.LayoutOrder
-q.Parent = p
+local n = {}
 
-local r = {}
-
-local function s(t)
-	for _, u in {"UNXHubUI", "UNXErrorUI", "UNXHubTheme"} do
-		local v = a:FindFirstChild(u)
-		if v then
-			for _, w in ipairs(v:GetDescendants()) do
-				if w:IsA("TextButton") then
-					if w.Name:lower() == "minimize" then continue end
-					if w.BackgroundColor3 == Color3.fromRGB(0, 121, 0) then continue end
-					w.BackgroundColor3 = t.Button
-					w.TextColor3 = t.TextColor
-					w.Font = Enum.Font.SourceSansLight
-				elseif w:IsA("TextBox") then
-					w.BackgroundColor3 = t.TextBox
-					w.TextColor3 = t.TextColor
-					w.Font = Enum.Font.SourceSansLight
-				elseif w:IsA("TextLabel") then
-					w.TextColor3 = t.TextColor
-					w.Font = Enum.Font.SourceSansLight
-				elseif w:IsA("Frame") then
-					w.BackgroundColor3 = t.Frame
+local function o(theme)
+	for _, ui in {"UNXHubUI", "UNXErrorUI", "UNXHubTheme"} do
+		local container = a:FindFirstChild(ui)
+		if container then
+			for _, v in ipairs(container:GetDescendants()) do
+				if v:IsA("TextButton") then
+					if v.Name:lower() == "minimize" or v.BackgroundColor3 == Color3.fromRGB(0, 121, 0) then continue end
+					v.BackgroundColor3 = theme.Button
+					v.TextColor3 = theme.TextColor
+					v.Font = Enum.Font.SourceSansLight
+				elseif v:IsA("TextBox") then
+					v.BackgroundColor3 = theme.TextBox
+					v.TextColor3 = theme.TextColor
+					v.Font = Enum.Font.SourceSansLight
+				elseif v:IsA("TextLabel") then
+					v.TextColor3 = theme.TextColor
+					v.Font = Enum.Font.SourceSansLight
+				elseif v:IsA("Frame") then
+					v.BackgroundColor3 = theme.Frame
 				end
 			end
 		end
 	end
 
-	n.BackgroundColor3 = t.Frame
-	for _, x in ipairs(r) do
-		if x.Name == "Close" then
-			x.BackgroundColor3 = Color3.fromRGB(130, 3, 3)
-		else
-			x.BackgroundColor3 = t.Button
-		end
-		x.TextColor3 = t.TextColor
+	k.BackgroundColor3 = theme.Frame
+	for _, b in ipairs(n) do
+		b.BackgroundColor3 = b.Name == "Close" and Color3.fromRGB(130, 3, 3) or theme.Button
+		b.TextColor3 = theme.TextColor
 	end
 end
 
-local function y(z)
-	local aa = Instance.new("TextButton")
-	aa.Name = z
-	aa.Size = UDim2.new(1, -10, 0, 30)
-	aa.Text = z
-	aa.BackgroundColor3 = e.Default.Button
-	aa.TextColor3 = Color3.fromRGB(255, 255, 255)
-	aa.Font = Enum.Font.SourceSansLight
-	aa.TextScaled = true
-	aa.Parent = p
+local function p(name)
+	local q = Instance.new("TextButton", l)
+	q.Name = name
+	q.Size = UDim2.new(1, -10, 0, 30)
+	q.Text = name
+	q.BackgroundColor3 = c.Default.Button
+	q.TextColor3 = Color3.fromRGB(255, 255, 255)
+	q.Font = Enum.Font.SourceSansLight
+	q.TextScaled = true
+	Instance.new("UICorner", q).CornerRadius = UDim.new(0, 8)
 
-	local ab = Instance.new("UICorner")
-	ab.CornerRadius = UDim.new(0, 8)
-	ab.Parent = aa
-
-	aa.MouseButton1Click:Connect(function()
-		if z == "Close" then
-			n.Visible = false
-		elseif z == "Randomizer" then
-			k = false
-			g = "Randomizer"
-			j = true
-		elseif z == "Rainbow" then
-			k = true
-			g = "Rainbow"
+	q.MouseButton1Click:Connect(function()
+		if name == "Close" then
+			j.Enabled = false
+		elseif name == "Randomizer" then
+			h = false
+			e = "Randomizer"
+			g = true
+		elseif name == "Rainbow" then
+			h = true
+			e = "Rainbow"
 		else
-			k = false
-			g = z
+			h = false
+			e = name
 		end
 	end)
 
-	table.insert(r, aa)
+	table.insert(n, q)
 end
 
-for _, ac in ipairs(f) do
-	y(ac)
+for _, r in ipairs(d) do
+	p(r)
 end
 
-p.CanvasSize = UDim2.new(0, 0, 0, q.AbsoluteContentSize.Y)
+l.CanvasSize = UDim2.new(0, 0, 0, m.AbsoluteContentSize.Y)
 
 while true do
-	if g == "Rainbow" then
-		l = (l + 0.01) % 1
-		local ad = Color3.fromHSV(l, 1, 1)
-		local ae = Color3.fromHSV(l, 1, 0.8)
-		local af = Color3.fromHSV(l, 1, 0.6)
-		local ag = {
-			Frame = ad,
-			Button = ae,
-			TextBox = af,
+	if e == "Rainbow" then
+		i = (i + 0.01) % 1
+		local s = {
+			Frame = Color3.fromHSV(i, 1, 1),
+			Button = Color3.fromHSV(i, 1, 0.8),
+			TextBox = Color3.fromHSV(i, 1, 0.6),
 			TextColor = Color3.fromRGB(255, 255, 255)
 		}
-		s(ag)
-		h = "Rainbow"
-
-	elseif g == "Randomizer" then
-		if j or h ~= "Randomizer" then
-			i = {
+		o(s)
+		f = "Rainbow"
+	elseif e == "Randomizer" then
+		if g or f ~= "Randomizer" then
+			c.Random = {
 				Frame = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255)),
 				Button = Color3.fromRGB(math.random(0, 200), math.random(0, 200), math.random(0, 200)),
 				TextBox = Color3.fromRGB(math.random(0, 150), math.random(0, 150), math.random(0, 150)),
 				TextColor = Color3.fromRGB(math.random(0, 255), math.random(0, 255), math.random(0, 255))
 			}
-			j = false
-			h = "Randomizer"
+			g = false
+			f = "Randomizer"
 		end
-		if i then
-			s(i)
+		o(c.Random)
+	elseif e == "Default" then
+		if f ~= "Default" then
+			o(c.Default)
+			f = "Default"
 		end
-
-	elseif g == "Default" then
-		if h ~= "Default" then
-			s(e.Default)
-			h = "Default"
-		end
-
-	elseif e[g] then
-		s(e[g])
-		h = g
+	elseif c[e] then
+		o(c[e])
+		f = e
 	end
-
 	task.wait(0.1)
 end
