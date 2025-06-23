@@ -9,7 +9,6 @@ if not a:FindFirstChild("UNXHubUI") then
 		Duration = 5
 	})
 	return
-warn("[ERROR]: UNX Not Found")
 end
 
 if b:FindFirstChild("isunxthemeactivated") then
@@ -17,7 +16,6 @@ if b:FindFirstChild("isunxthemeactivated") then
 		Title = "Warning",
 		Text = "Could not execute because an instance of the Theme Changer is already running.",
 		Duration = 5
-  warn("[ERROR]: Instance Of Theme Changer Already Running, Please Rejoin.
 	})
 	return
 end
@@ -210,5 +208,3 @@ while true do
 
 	task.wait(0.1)
 end
-
-print("[SUCESS]: Theme Changer Loaded Sucessfully")
