@@ -175,7 +175,7 @@ if debugmode == true then
 	print("[DEBUG]: Calling Ban API, Please Wait...")
 end
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/API.lua",true))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/uHeyCaf/UNX/refs/heads/main/Modules/v1/API.lua",true))()
 
 OpenUNX.Name = "OpenUNX"
 OpenUNX.Parent = UNXHubUI
