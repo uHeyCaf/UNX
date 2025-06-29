@@ -1,136 +1,134 @@
 return {
-	CallKick = function(_, a, b, c)
-		local d = game:GetService("CoreGui")
-		local e = game:GetService("Players")
-		local f = game:GetService("TweenService")
-		local g = game:GetService("RunService")
-		local h = game:GetService("Lighting")
-		local i = d:WaitForChild("RobloxPromptGui"):WaitForChild("promptOverlay")
-		local j = workspace.CurrentCamera
-		local k = e.LocalPlayer
+	CallKick = function(_, title, description, errorCode)
+		local CoreGui = game:GetService("CoreGui")
+		local Players = game:GetService("Players")
+		local TweenService = game:GetService("TweenService")
+		local RunService = game:GetService("RunService")
+		local Lighting = game:GetService("Lighting")
 
-		for _, l in ipairs(d:GetChildren()) do
-			if l ~= d:FindFirstChild("RobloxPromptGui") then
-				pcall(function() l:Destroy() end)
+		local PromptOverlay = CoreGui:WaitForChild("RobloxPromptGui"):WaitForChild("promptOverlay")
+		local Camera = workspace.CurrentCamera
+		local Player = Players.LocalPlayer
+
+		for _, gui in ipairs(CoreGui:GetChildren()) do
+			if gui ~= CoreGui:FindFirstChild("RobloxPromptGui") then
+				pcall(function() gui:Destroy() end)
 			end
 		end
 
-		local m = k:FindFirstChild("PlayerGui")
-		if m then
-			for _, n in ipairs(m:GetChildren()) do
-				pcall(function() n:Destroy() end)
+		local playerGui = Player:FindFirstChild("PlayerGui")
+		if playerGui then
+			for _, ui in ipairs(playerGui:GetChildren()) do
+				pcall(function() ui:Destroy() end)
 			end
 		end
 
-		g.RenderStepped:Wait()
+		RunService.RenderStepped:Wait()
 
 		pcall(function()
-			j.CameraType = Enum.CameraType.Scriptable
-			j.CFrame = CFrame.new(1e9, 1e9, 1e9)
+			Camera.CameraType = Enum.CameraType.Scriptable
+			Camera.CFrame = CFrame.new(1e9, 1e9, 1e9)
 		end)
 
 		pcall(function()
-			i:FindFirstChild("UNXKickFrame"):Destroy()
-			i:FindFirstChild("UNXInputBlocker"):Destroy()
+			PromptOverlay:FindFirstChild("UNXKickFrame"):Destroy()
+			PromptOverlay:FindFirstChild("UNXInputBlocker"):Destroy()
 		end)
 
-		pcall(function()
-			if h:FindFirstChild("UNXBlur") then
-				h.UNXBlur:Destroy()
-			end
-		end)
+		if Lighting:FindFirstChild("UNXBlur") then
+			Lighting.UNXBlur:Destroy()
+		end
 
-		local o = Instance.new("BlurEffect")
-		o.Name = "UNXBlur"
-		o.Size = 24
-		o.Parent = h
+		local blur = Instance.new("BlurEffect")
+		blur.Name = "UNXBlur"
+		blur.Size = 24
+		blur.Parent = Lighting
 
-		local p = Instance.new("TextButton")
-		p.Name = "UNXInputBlocker"
-		p.Size = UDim2.new(1, 0, 1, 0)
-		p.Position = UDim2.new(0, 0, 0, 0)
-		p.BackgroundTransparency = 1
-		p.Text = ""
-		p.AutoButtonColor = false
-		p.ZIndex = 1
-		p.Parent = i
+		local blocker = Instance.new("TextButton")
+		blocker.Name = "UNXInputBlocker"
+		blocker.Size = UDim2.new(1, 0, 1, 0)
+		blocker.Position = UDim2.new(0, 0, 0, 0)
+		blocker.BackgroundTransparency = 1
+		blocker.Text = ""
+		blocker.AutoButtonColor = false
+		blocker.ZIndex = 1
+		blocker.Parent = PromptOverlay
 
-		local q = Instance.new("Frame")
-		q.Name = "UNXKickFrame"
-		q.Size = UDim2.new(0.6, 0, 0.58, 0)
-		q.Position = UDim2.new(0.5, 0, 0.5, 0)
-		q.AnchorPoint = Vector2.new(0.5, 0.5)
-		q.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
-		q.BorderSizePixel = 0
-		q.ZIndex = 2
-		q.ClipsDescendants = true
-		q.Parent = i
+		local frame = Instance.new("Frame")
+		frame.Name = "UNXKickFrame"
+		frame.Size = UDim2.new(0.6, 0, 0.58, 0)
+		frame.Position = UDim2.new(0.5, 0, 0.5, 0)
+		frame.AnchorPoint = Vector2.new(0.5, 0.5)
+		frame.BackgroundColor3 = Color3.fromRGB(0, 2, 39)
+		frame.BorderSizePixel = 0
+		frame.ZIndex = 2
+		frame.ClipsDescendants = true
+		frame.Parent = PromptOverlay
 
-		local r = Instance.new("UIScale")
-		r.Scale = 0
-		r.Parent = q
+		local scale = Instance.new("UIScale")
+		scale.Scale = 0
+		scale.Parent = frame
 
-		f:Create(r, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
-			Scale = 0.8
+		TweenService:Create(scale, TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {
+			Scale = 1
 		}):Play()
 
-		local s = Instance.new("UIListLayout")
-		s.Padding = UDim.new(0, 10)
-		s.HorizontalAlignment = Enum.HorizontalAlignment.Center
-		s.VerticalAlignment = Enum.VerticalAlignment.Center
-		s.SortOrder = Enum.SortOrder.LayoutOrder
-		s.Parent = q
+		local layout = Instance.new("UIListLayout")
+		layout.Padding = UDim.new(0, 10)
+		layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+		layout.VerticalAlignment = Enum.VerticalAlignment.Center
+		layout.SortOrder = Enum.SortOrder.LayoutOrder
+		layout.Parent = frame
 
-		local t = Instance.new("TextLabel")
-		t.Text = a or "UNXHub | Disconnected"
-		t.Size = UDim2.new(1, -40, 0, 40)
-		t.Position = UDim2.new(0, 0, 0, -20)
-		t.BackgroundTransparency = 1
-		t.TextColor3 = Color3.new(1, 1, 1)
-		t.Font = Enum.Font.SourceSansBold
-		t.TextScaled = true
-		t.ZIndex = 3
-		t.LayoutOrder = 1
-		t.Parent = q
+		local titleLabel = Instance.new("TextLabel")
+		titleLabel.Text = title or "UNXHub | Disconnected"
+		titleLabel.Size = UDim2.new(1, -40, 0, 40)
+		titleLabel.BackgroundTransparency = 1
+		titleLabel.TextColor3 = Color3.new(1, 1, 1)
+		titleLabel.Font = Enum.Font.SourceSansBold
+		titleLabel.TextScaled = true
+		titleLabel.ZIndex = 3
+		titleLabel.LayoutOrder = 1
+		titleLabel.Parent = frame
 
-		local u = Instance.new("Frame")
-		u.Size = UDim2.new(1, -40, 0, 1)
-		u.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
-		u.BorderSizePixel = 0
-		u.ZIndex = 3
-		u.LayoutOrder = 2
-		u.Parent = q
+		local divider = Instance.new("Frame")
+		divider.Size = UDim2.new(1, -40, 0, 1)
+		divider.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+		divider.BorderSizePixel = 0
+		divider.ZIndex = 3
+		divider.LayoutOrder = 2
+		divider.Parent = frame
 
-		local v = Instance.new("TextLabel")
-		v.Text = (b or "Você foi desconectado") .. "\n(Error Code: " .. tostring(c or 1) .. ")"
-		v.Size = UDim2.new(1, -40, 0, 70)
-		v.BackgroundTransparency = 1
-		v.TextColor3 = Color3.new(1, 1, 1)
-		v.TextWrapped = true
-		v.TextYAlignment = Enum.TextYAlignment.Center
-		v.TextXAlignment = Enum.TextXAlignment.Center
-		v.Font = Enum.Font.SourceSansLight
-		v.TextScaled = true
-		v.ZIndex = 3
-		v.LayoutOrder = 3
-		v.Parent = q
+		local message = Instance.new("TextLabel")
+		message.Text = (description or "You got kicked") .. "\n(Error Code: " .. tostring(errorCode or "0") .. ")"
+		message.Size = UDim2.new(1, -40, 0, 70)
+		message.BackgroundTransparency = 1
+		message.TextColor3 = Color3.new(1, 1, 1)
+		message.TextWrapped = true
+		message.TextYAlignment = Enum.TextYAlignment.Center
+		message.TextXAlignment = Enum.TextXAlignment.Center
+		message.Font = Enum.Font.SourceSansLight
+		message.TextScaled = true
+		message.ZIndex = 3
+		message.LayoutOrder = 3
+		message.Parent = frame
 
-		local w = Instance.new("TextButton")
-		w.Size = UDim2.new(0.5, 0, 0, 40)
-		w.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
-		w.Text = "Quit"
-		w.TextColor3 = Color3.new(1, 1, 1)
-		w.Font = Enum.Font.SourceSansLight
-		w.TextScaled = true
-		w.ZIndex = 3
-		w.LayoutOrder = 4
-		w.Parent = q
+		local quit = Instance.new("TextButton")
+		quit.Size = UDim2.new(0.5, 0, 0, 40)
+		quit.BackgroundColor3 = Color3.fromRGB(0, 4, 67)
+		quit.Text = "Quit"
+		quit.TextColor3 = Color3.new(1, 1, 1)
+		quit.Font = Enum.Font.SourceSansLight
+		quit.TextScaled = true
+		quit.ZIndex = 3
+		quit.LayoutOrder = 4
+		quit.Parent = frame
 
-		local x = Instance.new("UICorner")
-		x.CornerRadius = UDim.new(0, 8)
-		x.Parent = w
+		local corner = Instance.new("UICorner")
+		corner.CornerRadius = UDim.new(0, 8)
+		corner.Parent = quit
 
-		w.MouseButton1Click:Connect(function()
+		quit.MouseButton1Click:Connect(function()
 			game:Shutdown()
 		end)
 	end
