@@ -4,8 +4,6 @@ local plr = game.Players.LocalPlayer
 
 local BannedUsers = {
     {UserId = 1, Reason = "Hi Roblox Big Fan"},
-    {UserId = 1845277449, Reason = ""},
-    {UserId = 1932649501, Reason = ""}
 }
 
 local BannedGames = {
